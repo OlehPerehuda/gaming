@@ -1,13 +1,13 @@
-import rocket from '../../static/images/rocket.png';
-import logo from '../../static/images/nav/logo.png';
+import rocket from '../../static/images/auth/rocket.png';
+import logo from '../../static/images/auth/logo.png';
 import './styles.scss';
 
 export const AuthLayout: React.FC = ({ children }) => {
     return (
-        <div className='auth__wrapper'>
-            <div className='auth_leftbar'>
+        <div className='auth'>
+            <div className='auth__leftbar'>
                 <img src={logo} alt='Logo' className='auth__logo' />
-                <img src={rocket} alt='Rocket' />
+                <img src={rocket} alt='Rocket' className="auth__rocket" />
                 <div>
                     <h5>
                         Buy,
@@ -17,7 +17,7 @@ export const AuthLayout: React.FC = ({ children }) => {
                     </h5>
                 </div>
             </div>
-            <div className='auth_content'>{children}</div>
+            <div className='auth__content'>{children}</div>
         </div>
     );
 };
