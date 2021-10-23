@@ -1,6 +1,6 @@
-import { Comment } from "../comment";
-import { Game } from "../game";
-import { Like } from "../like";
+import { Comment } from '../comment';
+import { IGame } from '../game';
+import { Like } from '../like';
 
 export class UserMainInfo {
     constructor(
@@ -18,6 +18,6 @@ export class User {
         public id: string,
         public likes: Like,
         public comments: Comment[],
-        public favourites: Game[],
+        public favourites: IGame[],
     ) { };
 };

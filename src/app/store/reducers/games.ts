@@ -3,7 +3,7 @@ import { LOAD_GAMES } from '../actions/games';
 interface IGame {}
 
 const initState = {
-    games: [],
+    data: [],
     loading: true,
 };
 
@@ -12,7 +12,7 @@ export const gamesReducer = (state: { games: IGame[] }, action: any) => {
         case LOAD_GAMES:
             return {
                 ...state,
-                games: action.payload,
+                data: action.payload,
                 loading: false,
             };
 

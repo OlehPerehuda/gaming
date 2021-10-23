@@ -1,5 +1,5 @@
 import React, { Fragment, lazy } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { Header } from '../app/components/Header';
 import { AuthLayout } from '../app/components/AuthLayout';
 
@@ -45,11 +45,12 @@ export const Routes = () => (
                 ))}
             </Switch>
         </Route>
-        {routeConfig.map((route, index) => (
-            <Fragment key={index}>
-                <Header />
-                <Route {...route} />
-            </Fragment>
-        ))}
+        <Route path='/'>
+            <Header />
+            {routeConfig.map((route, index) => (
+                <Route {...route} key={index} />
+            ))}
+        </Route>
+        <Redirect to='/' />
     </Switch>
 );
