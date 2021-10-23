@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { User } from 'firebase/auth';
-import { firebaseAuth } from '../../firebase';
-
 import { registerUser } from '../../app/store/actions/user';
 
 import { RouteConfig } from '../../routes';
@@ -21,17 +18,11 @@ const Login: React.FC = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const [user, setUser] = useState<User | null>();
     const handleSumbit = (e: any) => {
         e.preventDefault();
         dispatch(registerUser({ email, password }));
     };
 
-    useEffect(() => {
-        firebaseAuth.onAuthStateChanged((_user) => {
-            setUser(_user);
-        });
-    }, []);
     /** auth user values that will send to DB */
     const authValues = [
         {

@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-
+import { collection, addDoc } from "firebase/firestore";
 
 export const REGISTER_USER: string = 'REGISTER_USER';
 export const LOGIN_USER: string = 'LOGIN_USER';

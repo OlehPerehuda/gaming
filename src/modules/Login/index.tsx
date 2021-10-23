@@ -19,17 +19,10 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const [user, setUser] = useState<User | null>();
     const handleSumbit = (e: any) => {
         e.preventDefault();
         dispatch(loginUser({ email, password }));
     };
-
-    useEffect(() => {
-        firebaseAuth.onAuthStateChanged((_user) => {
-            setUser(_user);
-        });
-    }, []);
 
     /** auth user values that will send to DB */
     const authValues = [
