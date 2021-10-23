@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav } from '@components/Nav';
+import { Nav } from '../Nav';
 
 import './Header.scss';
 
@@ -16,5 +16,5 @@ export const Header = () =>
                 </p>
             </div>
         </div>
-    </header>;
-
+    </header>
+);
