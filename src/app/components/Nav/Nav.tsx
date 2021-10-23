@@ -1,5 +1,5 @@
 
-import logo from '../../static/images/nav/logo.svg';
+import logo from '@static/images/nav/logo.svg';
 
 import './Nav.scss';
 
