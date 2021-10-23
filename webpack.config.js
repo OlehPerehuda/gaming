@@ -14,7 +14,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build/'),
         filename: '[name].[hash].js',
-        publicPath: '/',
+        publicPath: 'https://gaming-agregator.herokuapp.com//',
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -30,6 +30,7 @@ module.exports = {
         open: true,
         historyApiFallback: true,
     },
+
     resolve: {
         alias: {
             '@components': path.resolve(__dirname, './src/app/components/'),
