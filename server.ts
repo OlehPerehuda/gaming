@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'build')));
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 3000);
 
 /* final catch-all route to index.html defined last */
 app.get('/*', (req, res) => {
