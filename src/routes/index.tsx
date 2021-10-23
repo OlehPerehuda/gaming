@@ -20,10 +20,10 @@ export enum ERoutes {
     create = '/create',
 }
 
-const authRouteConfig = [
-    { path: ERoutes.login, component: Login, exact: true },
-    { path: ERoutes.registration, component: Registration, exact: true },
-];
+// const authRouteConfig = [
+//     {, component: Registration },
+//     { path: ERoutes.login, component: Login },
+// ];
 const routeConfig = [
     { path: ERoutes.home, component: Main, exact: true },
     { path: ERoutes.admin, component: Admins, exact: true },
@@ -34,15 +34,15 @@ const routeConfig = [
 export const Routes = () => (
     <Switch>
         <Route path='/auth'>
-            <Switch>
-                {authRouteConfig.map((route, index) => (
-                    <Fragment key={index}>
-                        <AuthLayout>
-                            <Route key={index} {...route} />
-                        </AuthLayout>
-                    </Fragment>
-                ))}
-            </Switch>
+            <AuthLayout>
+                <Switch>
+                    <Route
+                        path={ERoutes.registration}
+                        component={Registration}
+                    />
+                    <Route path={ERoutes.login} component={Login} />
+                </Switch>
+            </AuthLayout>
         </Route>
         <Route path='/'>
             <Header />
