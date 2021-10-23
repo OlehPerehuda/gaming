@@ -13,7 +13,7 @@ export class ComponentRoutes {
     /** data route config*/
     constructor(
         public path: string,
-        public component: React.FC,
+        public component: React.FC<any>,
         public exact: boolean,
         public children?: ComponentRoutes[]
     ) { };
@@ -22,7 +22,7 @@ export class ComponentRoutes {
 /** Route config implementation */
 export class RouteConfig {
     public static Main: ComponentRoutes = new ComponentRoutes(
-        '/main',
+        '/',
         Main,
         true,
     );

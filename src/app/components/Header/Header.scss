@@ -1,8 +1,0 @@
-@import '../../../index.scss';
-
-.header {
-    &__wrapper {
-        border: 1px solid red;
-        @extend %wrapper;
-    }
-}
