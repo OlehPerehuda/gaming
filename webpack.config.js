@@ -10,7 +10,7 @@ module.exports = {
     target: "web",
     devtool: "inline-source-map",
     output: {
-        path: path.resolve(__dirname, "dist/"),
+        path: path.resolve(__dirname, "build/"),
         filename: "[name].[hash].js",
         publicPath: "/",
     },
