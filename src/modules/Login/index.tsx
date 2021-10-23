@@ -1,10 +1,7 @@
 /** just for test rigth now */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { User } from 'firebase/auth';
-import { firebaseAuth } from '../../firebase';
 
 import { loginUser } from '../../app/store/actions/user';
 

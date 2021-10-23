@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 export const REGISTER_USER: string = 'REGISTER_USER';
 export const LOGIN_USER: string = 'LOGIN_USER';
@@ -24,6 +25,11 @@ export const registerUser = (user: { email: string, password: string }) => async
             user.email,
             user.password
         );
+        await addDoc(collection(db, 'user'), {
+            firstName: 'oleh',
+            lastName: 'oleh',
+            age: 12,
+        });
         dispatch(register(user));
     } catch (error) {
         console.log(error);
