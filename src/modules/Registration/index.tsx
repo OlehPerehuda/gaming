@@ -4,70 +4,74 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { registerUser } from '../../app/store/actions/user';
-
 import { ERoutes } from '../../routes';
-
 import { UserAuthValue } from '../../app/components/common/UserAuthValue';
-
+import { registrationFormConfig } from './consts';
+import { FormWrapper } from '../../app/components/FormWrapper';
 import './index.scss';
 
 const Login: React.FC = () => {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [form, setForm] = useState<any>({
+        email: {
+            value: '',
+            error: false,
+        },
+        password: {
+            value: '',
+            error: false,
+        },
+        firstName: {
+            value: '',
+            error: false,
+        },
+        lastName: {
+            value: '',
+            error: false,
+        },
+    });
 
-    const handleSumbit = (e: any) => {
-        e.preventDefault();
-        dispatch(registerUser({ email, password, firstName, lastName }));
+    const handleChange = (fieldName: string) => (value: string) => {
+        const newForm = { ...form, [fieldName]: { value, error: !value } };
+        setForm(newForm);
+    };
+
+    const handleSumbit = () => {
+        dispatch(
+            registerUser({
+                email: form.email.value,
+                password: form.password.value,
+                firstName: form.firstName.value,
+                lastName: form.lastName.value,
+            })
+        );
     };
 
     /** auth user values that will send to DB */
-    const authValues = [
-        {
-            email,
-            placeHolder: 'Enter Your Email',
-            type: 'email',
-            handleChange: setEmail,
-        },
-        {
-            password,
-            placeHolder: 'Enter password',
-            type: 'password',
-            handleChange: setPassword,
-        },
-        {
-            firstName,
-            placeHolder: 'Please, enter first name',
-            type: 'text',
-            handleChange: setFirstName,
-        },
-        {
-            lastName,
-            placeHolder: 'Please, enter last name',
-            type: 'text',
-            handleChange: setLastName,
-        },
-    ];
 
     return (
-        <section className="auth-rightbar">
-            <h1 className="auth-rightbar__sign-up">
-                SIGN UP
-            </h1>
-            <form
-                className="auth-rightbar__form"
-                onSubmit={handleSumbit}>
-                {authValues.map((authValue: any) => {
-                    return <UserAuthValue {...authValue} />;
+        <section className='registration'>
+            <h3 className='registration__sign-up'>Become a member</h3>
+            <FormWrapper handleSumbit={handleSumbit} isValidForm={true}>
+                {registrationFormConfig.map((authValue: any) => {
+                    return (
+                        <UserAuthValue
+                            {...authValue}
+                            handleChange={handleChange(authValue.name)}
+                            value={form[authValue.name].value}
+                            error={form[authValue.name].error}
+                        />
+                    );
                 })}
-                <input value='submit' type='submit' />
-            </form>
+            </FormWrapper>
             <div>
                 <div>
-                    <p>Already registred?</p>
-                    <Link to={ERoutes.login}>Sign In</Link>
+                    <p>
+                        Already registred?{' '}
+                        <Link to={ERoutes.login} className='sign-in__link'>
+                            Sign In
+                        </Link>
+                    </p>
                 </div>
             </div>
         </section>
