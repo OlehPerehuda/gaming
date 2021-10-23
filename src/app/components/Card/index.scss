@@ -3,15 +3,27 @@
 .card {
     width: 400px;
     height: 500px;
-    border: 1px solid black;
+    box-shadow:  0 70px 60px -40px rgb(0 0 0 / 10%);
     border-radius: 40px;
+    overflow: hidden;
     &__image {
-        width: 400px;
-        height: 200px;
-        border: 1px solid red;
+        width: 100%;
     }
     &__title,
     &__description {
         text-align: center;
+    }
+    &__stats {
+        margin-top: 40px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    &__likes,
+    &__comments {
+        &__title {
+            font-weight: bold;
+        }
     }
 }
