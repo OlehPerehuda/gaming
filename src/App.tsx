@@ -1,10 +1,17 @@
 import './App.scss';
 
+import { BrowserRouter } from 'react-router-dom';
+import { Routes } from './routes';
+import { Suspense } from 'react';
+
 function App() {
     return (
-        <section className="App">
-
-        </section>
+        <Suspense fallback={<div>Loading...</div>}>
+            {/** TODO: LoadingPage */}
+            <BrowserRouter>
+                <Routes />
+            </BrowserRouter>
+        </Suspense>
     );
 }
 
