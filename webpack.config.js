@@ -14,7 +14,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build/'),
         filename: '[name].[hash].js',
-        publicPath: 'https://gaming-agregator.herokuapp.com/',
+        publicPath: '/',
     },
     plugins: [
         new HtmlWebpackPlugin({
