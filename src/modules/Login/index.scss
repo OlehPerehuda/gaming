@@ -33,6 +33,12 @@
         &:hover {
             background: rgb(124, 124, 124);
         }
+        &-valid {
+            background-color: #001aff;
+            &:hover {
+                background-color: #001aff;
+            }
+        }
     }
     &__create {
         margin-bottom: 100px;

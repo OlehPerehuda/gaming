@@ -46,6 +46,7 @@ export const loginUser = (user: { email: string; password: string }) =>
         try {
             await signInWithEmailAndPassword(auth, user.email, user.password);
             dispatch(login(user));
+            location.pathname = '/';
         } catch (error) {
             console.log(error);
         }

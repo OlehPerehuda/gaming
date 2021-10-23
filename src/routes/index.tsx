@@ -20,10 +20,6 @@ export enum ERoutes {
     create = '/create',
 }
 
-// const authRouteConfig = [
-//     {, component: Registration },
-//     { path: ERoutes.login, component: Login },
-// ];
 const routeConfig = [
     { path: ERoutes.home, component: Main, exact: true },
     { path: ERoutes.admin, component: Admins, exact: true },

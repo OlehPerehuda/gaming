@@ -1,8 +1,9 @@
+/* eslint-disable arrow-body-style */
 /** just for test rigth now */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import cs from 'classnames';
 import { loginUser } from '../../app/store/actions/user';
 
 import { ERoutes } from '../../routes';
@@ -10,49 +11,74 @@ import { ERoutes } from '../../routes';
 import { UserAuthValue } from '../../app/components/common/UserAuthValue';
 
 import './index.scss';
+import { authValues } from './consts';
+import { IField } from './interface';
 
 const Login: React.FC = () => {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [form, setForm] = useState({
+        email: {
+            value: '',
+            error: '',
+        },
+        password: {
+            value: '',
+            error: '',
+        },
+    });
+
+    const handleChange = (fieldName: string) => (value: string) => {
+        const newForm = {
+            ...form,
+            [fieldName]: { value: value, error: !value },
+        };
+        setForm(newForm);
+    };
 
     const handleSumbit = (e: any) => {
         e.preventDefault();
-        dispatch(loginUser({ email, password }));
+        if (!form.email.value || !form.password.value) {
+            return;
+        }
+        dispatch(
+            loginUser({
+                email: form.email.value,
+                password: form.password.value,
+            })
+        );
     };
 
-    /** auth user values that will send to DB */
-    const authValues = [
-        {
-            email,
-            placeHolder: 'Enter Your Email',
-            type: 'email',
-            handleChange: setEmail,
-        },
-        {
-            password,
-            placeHolder: 'Enter password',
-            type: 'password',
-            handleChange: setPassword,
-        },
-    ];
     return (
         <div className='login'>
-                <Link
-                    className="login__create"
-                    to={ERoutes.registration}
-                >+ Create new Account</Link>
-            <h4 className="login__title">Get in!</h4>
-                <form className="login__form" onSubmit={handleSumbit}>
-                    {authValues.map((authValue: any) => {
-                        return <UserAuthValue {...authValue} class={"login__input"} />;
-                    })}
-                    <input
-                        className="login__submit"
-                        value='submit'
-                        type='submit'
-                    />
-                </form>
+            <Link className='login__create' to={ERoutes.registration}>
+                + Create new Account
+            </Link>
+            <h4 className='login__title'>Get in!</h4>
+            <form className='login__form' onSubmit={handleSumbit}>
+                {/* @ts-ignore */}
+                {authValues.map((authValue: IField, index) => {
+                    return (
+                        <UserAuthValue
+                            {...authValue}
+                            handleChange={handleChange(authValue.name)}
+                            error={form[authValue.name]?.error}
+                            value={form[authValue.name]?.value}
+                            // className={'login__input'}
+                            key={index}
+                        />
+                    );
+                })}
+                <input
+                    className={cs(
+                        'login__submit',
+                        form.email.value &&
+                            form.password.value &&
+                            'login__submit-valid'
+                    )}
+                    value='submit'
+                    type='submit'
+                />
+            </form>
         </div>
     );
 };
