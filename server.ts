@@ -6,10 +6,6 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.set('port', process.env.PORT || 8080);
 
-app.get('/some-route', (req, res) => {
-    res.send('ok');
-});
-
 /* final catch-all route to index.html defined last */
 app.get('/*', (req, res) => {
     console.log(process.env);

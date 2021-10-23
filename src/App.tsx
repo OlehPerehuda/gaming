@@ -2,7 +2,7 @@ import React from 'react';
 import { Suspense } from 'react';
 
 import { Routes } from './routes';
-import {Header} from '@components/Header';
+import { Header } from './app/components/Header';
 
 function App() {
     return (
@@ -10,7 +10,6 @@ function App() {
             <Header />
             <Routes />
         </Suspense>
-
     );
 }
 
