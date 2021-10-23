@@ -1,0 +1,15 @@
+{
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "password": "",
+    "id": "",
+    "age": "",
+    "likes": "",
+    "comments": [
+        ""
+    ],
+    "favourites": [
+        ""
+    ]
+}
