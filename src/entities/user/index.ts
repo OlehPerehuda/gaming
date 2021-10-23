@@ -2,17 +2,22 @@ import { Comment } from '../comment';
 import { IGame } from '../game';
 import { Like } from '../like';
 
-/** exposes User domain entity */
-export class User {
+export class UserMainInfo {
     constructor(
         public firstName: string,
         public lastName: string,
         public email: string,
         public password: string,
+    ) { };
+};
+
+/** exposes User domain entity */
+export class User {
+    constructor(
+        public mainInfo: UserMainInfo,
         public id: string,
-        public age: string,
         public likes: Like,
         public comments: Comment[],
-        public favourites: IGame[]
-    ) {}
-}
+        public favourites: IGame[],
+    ) { };
+};

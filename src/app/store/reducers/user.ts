@@ -12,14 +12,14 @@ export const userReducer = (state: UserState, action: any) => {
         case REGISTER_USER:
             return {
                 ...state,
-                email: action.email,
-                password: action.password,
+                email: action.payload.email,
+                password: action.payload.password,
             };
         case LOGIN_USER:
             return {
                 ...state,
-                email: action.email,
-                password: action.password,
+                email: action.payload.email,
+                password: action.payload.password,
             };
         default: {
             return {...state};

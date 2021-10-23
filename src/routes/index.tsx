@@ -18,7 +18,7 @@ export enum ERoutes {
     login = '/auth/login',
     registration = '/auth/registration',
     create = '/create',
-}
+};
 
 const routeConfig = [
     { path: ERoutes.home, component: Main, exact: true },

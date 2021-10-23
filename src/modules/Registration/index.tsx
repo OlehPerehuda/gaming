@@ -20,7 +20,7 @@ const Login: React.FC = () => {
 
     const handleSumbit = (e: any) => {
         e.preventDefault();
-        dispatch(registerUser({ email, password }));
+        dispatch(registerUser({ email, password, firstName, lastName }));
     };
 
     /** auth user values that will send to DB */
@@ -52,9 +52,13 @@ const Login: React.FC = () => {
     ];
 
     return (
-        <>
-            <h1>SIGN UP</h1>
-            <form onSubmit={handleSumbit}>
+        <section className="auth-rightbar">
+            <h1 className="auth-rightbar__sign-up">
+                SIGN UP
+            </h1>
+            <form
+                className="auth-rightbar__form"
+                onSubmit={handleSumbit}>
                 {authValues.map((authValue: any) => {
                     return <UserAuthValue {...authValue} />;
                 })}
@@ -66,7 +70,7 @@ const Login: React.FC = () => {
                     <Link to={ERoutes.login}>Sign In</Link>
                 </div>
             </div>
-        </>
+        </section>
     );
 };
 
