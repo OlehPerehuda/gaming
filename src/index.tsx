@@ -4,6 +4,8 @@ import './firebase/index';
 import App from './App';
 import './index.scss';
 
+console.log(process.env);
+
 ReactDOM.render(
     <BrowserRouter>
         <App />
