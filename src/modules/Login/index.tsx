@@ -37,20 +37,22 @@ const Login: React.FC = () => {
         },
     ];
     return (
-        <div className='login__wrapper'>
-            <h4>Get in!</h4>
-            <form onSubmit={handleSumbit}>
-                <form onSubmit={handleSumbit}>
+        <div className='login'>
+                <Link
+                    className="login__create"
+                    to={ERoutes.registration}
+                >+ Create new Account</Link>
+            <h4 className="login__title">Get in!</h4>
+                <form className="login__form" onSubmit={handleSumbit}>
                     {authValues.map((authValue: any) => {
-                        return <UserAuthValue {...authValue} />;
+                        return <UserAuthValue {...authValue} class={"login__input"} />;
                     })}
-                    <input value='submit' type='submit' />
+                    <input
+                        className="login__submit"
+                        value='submit'
+                        type='submit'
+                    />
                 </form>
-            </form>
-            <div>
-                <p>Don't have an account?</p>
-                <Link to={ERoutes.registration}>Sign Up</Link>
-            </div>
         </div>
     );
 };
