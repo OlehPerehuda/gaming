@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv');
+const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
@@ -12,12 +14,15 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build/'),
         filename: '[name].[hash].js',
-        publicPath: 'https://gaming-agregator.herokuapp.com/',
+        publicPath: '/',
     },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Games',
             template: './public/index.html',
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(dotenv.config().parsed), // it will automatically pick up key values from .env file
         }),
     ],
     devServer: {
