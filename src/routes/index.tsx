@@ -33,17 +33,17 @@ const routeConfig = [
 
 export const Routes = () => (
     <Switch>
+        {routeConfig.map((route, index) => (
+            <Fragment key={index}>
+                <Header />
+                <Route {...route} />
+            </Fragment>
+        ))}
         {authRouteConfig.map((route, index) => (
             <Fragment key={index}>
                 <AuthLayout>
                     <Route key={index} {...route} />
                 </AuthLayout>
-            </Fragment>
-        ))}
-        {routeConfig.map((route, index) => (
-            <Fragment key={index}>
-                <Header />
-                <Route {...route} />
             </Fragment>
         ))}
     </Switch>
