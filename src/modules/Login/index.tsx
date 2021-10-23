@@ -1,41 +1,71 @@
 /** just for test rigth now */
-import React, { useState } from 'react';
-import getAuth from 'firebase/auth';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { User } from 'firebase/auth';
+import { firebaseAuth } from '../../firebase';
+
+import { loginUser } from '../../app/store/actions/user';
+
+import { RouteConfig } from '../../routes';
+
+import { UserAuthValue } from '../../app/components/common/UserAuthValue';
+
+import './index.scss';
 
 const Login: React.FC = () => {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
-    // const [firstName, setFirstName] = useState('');
-    // const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e: any) => {
+    const [user, setUser] = useState<User | null>();
+    const handleSumbit = (e: any) => {
         e.preventDefault();
+        dispatch(loginUser({ email, password }));
     };
-    const login = () => {
-        console.log('login');
-        const a = getAuth();
-    };
+
+    useEffect(() => {
+        firebaseAuth.onAuthStateChanged((_user) => {
+            setUser(_user);
+        });
+    }, []);
+
+    /** auth user values that will send to DB */
+    const authValues = [
+        {
+            email,
+            placeHolder: 'Enter Your Email',
+            type: 'email',
+            handleChange: setEmail,
+        },
+        {
+            password,
+            placeHolder: 'Enter password',
+            type: 'password',
+            handleChange: setPassword,
+        }
+    ];
     return (
         <>
-            <h1>Login Page</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder='Email'
-                    type='email'
-                />
-                <input
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Password'
-                    type='password'
-                />
-                <input
-                    value="login"
-                    type='submit'
-                />
+            <h1>SIGN IN</h1>
+            <form onSubmit={handleSumbit}>
+                <form onSubmit={handleSumbit}>
+                    {authValues.map((authValue: any) => {
+                        return <UserAuthValue {...authValue} />
+                    })}
+                    <input
+                        value='submit'
+                        type='submit'
+                    />
+                </form>
             </form>
+            <div>
+                <p>Don't have an account?</p>
+                <Link to={RouteConfig.Registration.path}>
+                    Sign Up
+                </Link>
+            </div>
         </>
     )
 };
