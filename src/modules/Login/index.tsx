@@ -1,5 +1,6 @@
 /** just for test rigth now */
 import React, { useState } from 'react';
+import getAuth from 'firebase/auth';
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -10,7 +11,10 @@ const Login: React.FC = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
     };
-
+    const login = () => {
+        console.log('login');
+        const a = getAuth();
+    };
     return (
         <>
             <h1>Login Page</h1>
@@ -33,7 +37,7 @@ const Login: React.FC = () => {
                 />
             </form>
         </>
-    );
+    )
 };
 
 export default Login;

@@ -1,11 +1,12 @@
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import './firebase/index';
+import App from './App';
+import './index.scss';
 
 ReactDOM.render(
     <BrowserRouter>
         <App />
     </BrowserRouter>,
-    document.getElementById('root'),
+    document.getElementById('root')
 );
