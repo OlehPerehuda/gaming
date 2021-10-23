@@ -9,4 +9,3 @@ export const Header = () =>
             <Nav/>
         </div>
     </header>;
-
