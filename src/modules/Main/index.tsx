@@ -1,10 +1,16 @@
-/** just for test rigth now */
 import React from 'react';
+import { Card } from '../../app/components/Card';
+import './index.scss';
 
-const Main: React.FC = () => {
+const Main = () => {
     return (
-        <h1>Main Page</h1>
-    );
-};
+        <section className="games">
+            <div className="games__cards-area">
+            <Card />
+            <Card />
+            </div>
+        </section>
+    )
+}
 
 export default Main;

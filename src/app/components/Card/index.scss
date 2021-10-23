@@ -1,0 +1,17 @@
+@import '@/index.scss';
+
+.card {
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 40px;
+    &__image {
+        width: 400px;
+        height: 200px;
+        border: 1px solid red;
+    }
+    &__title,
+    &__description {
+        text-align: center;
+    }
+}

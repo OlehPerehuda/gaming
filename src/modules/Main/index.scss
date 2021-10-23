@@ -1,0 +1,9 @@
+@import '@/index.scss';
+
+.games {
+    &__cards-area {
+        @extend %wrapper;
+        display: flex;
+        justify-content: space-around;
+    }
+}
