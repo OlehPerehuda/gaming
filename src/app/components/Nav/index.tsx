@@ -9,6 +9,7 @@ import { Cross, DropdownNavBar } from '../../static/images/nav/svg';
 
 import './index.scss';
 import { Link } from 'react-router-dom';
+import { ERoutes } from '../../../routes';
 
 export const Nav = () => {
     const [dropdownMenu, setDropdownMenu] = useState<boolean>(false);
@@ -47,10 +48,10 @@ export const Nav = () => {
                         </li>
                     ))}
                 </ul>
-                <Link to='/login' className='nav__button'>
+                <Link to={ERoutes.login} className='nav__button'>
                     Login
                 </Link>
-                <Link to='/register' className='nav__button'>
+                <Link to={ERoutes.registration} className='nav__button'>
                     Register
                 </Link>
             </div>

@@ -32,18 +32,7 @@
                 "default": "array-simple"
             }
         ],
-        "@typescript-eslint/indent": [
-            "warn",
-            4,
-            {
-                "FunctionDeclaration": {
-                    "parameters": "first"
-                },
-                "FunctionExpression": {
-                    "parameters": "first"
-                }
-            }
-        ],
+
         "@typescript-eslint/member-delimiter-style": [
             "warn",
             {
@@ -201,7 +190,6 @@
                 "allowArrowFunctions": true
             }
         ],
-        "indent": "warn",
         "jsx-quotes": ["warn", "prefer-double"],
         "line-comment-position": [
             "warn",
