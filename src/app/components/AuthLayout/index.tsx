@@ -9,7 +9,7 @@ export const AuthLayout: React.FC = ({ children }) => {
                 <img src={logo} alt='Logo' className='auth__logo' />
                 <img src={rocket} alt='Rocket' />
                 <div>
-                    <h5>
+                    <h5 className="auth_leftbar__title">
                         Buy,
                         <br /> Play,
                         <br /> Left Review!

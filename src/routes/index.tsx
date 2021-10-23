@@ -18,12 +18,13 @@ export enum ERoutes {
     login = '/auth/login',
     registration = '/auth/registration',
     create = '/create',
-}
+};
 
 const authRouteConfig = [
-    { path: ERoutes.login, component: Login, exact: true },
     { path: ERoutes.registration, component: Registration, exact: true },
+    { path: ERoutes.login, component: Login, exact: true },
 ];
+
 const routeConfig = [
     { path: ERoutes.home, component: Main, exact: true },
     { path: ERoutes.admin, component: Admins, exact: true },
