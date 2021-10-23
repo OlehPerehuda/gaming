@@ -1,3 +1,4 @@
+import { useState } from 'react';
 
 import logo from '../../static/images/nav/logo.png';
 import medium from '../../static/images/nav/medium.png';
@@ -7,8 +8,6 @@ import discord from '../../static/images/nav/discord.png';
 import { Cross, DropdownNavBar } from '../../static/images/nav/svg';
 
 import './index.scss';
-import { useState } from 'react';
-
 
 export const Nav = () =>{
     const [dropdownMenu, setDropdownMenu] = useState<boolean>(false);

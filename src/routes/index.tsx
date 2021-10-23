@@ -7,6 +7,7 @@ const Login = lazy(() => import('../modules/Login'));
 const Registration = lazy(() => import('../modules/Registration'));
 const Details = lazy(() => import('../modules/Details'));
 const CreatePost = lazy(() => import('../modules/CreatePost'));
+const Admins = lazy(() => import('../modules/Admins'));
 
 /** Route base config implementation */
 export class ComponentRoutes {
@@ -46,12 +47,18 @@ export class RouteConfig {
         CreatePost,
         true,
     );
+    public static Admins: ComponentRoutes = new ComponentRoutes(
+        '/admins',
+        Admins,
+        true,
+    );
     public static routes: ComponentRoutes[] = [
         this.Main,
         this.Registration,
         this.Login,
         this.Details,
         this.CreatePost,
+        this.Admins,
     ];
 };
 
