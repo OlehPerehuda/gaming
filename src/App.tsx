@@ -1,16 +1,15 @@
-import './App.scss';
+import React from 'react';
+import { Suspense } from 'react';
 
 import { Routes } from './routes';
-import {Header} from '@components/Header'
+import {Header} from '@components/Header';
 
 function App() {
     return (
-            <section className="app">
-                <section className="app__wrapper">
-                    <Header />
-                    <Routes />
-                </section>
-            </section>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Header />
+            <Routes />
+        </Suspense>
 
     );
 }
