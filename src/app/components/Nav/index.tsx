@@ -10,8 +10,11 @@ import { Cross, DropdownNavBar } from '../../static/images/nav/svg';
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { ERoutes } from '../../../routes';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 export const Nav = () => {
+    const { email } = useSelector((state: RootState) => state.user);
     const [dropdownMenu, setDropdownMenu] = useState<boolean>(false);
     const list = [
         {
@@ -48,17 +51,18 @@ export const Nav = () => {
                         </li>
                     ))}
                 </ul>
-                <Link to={ERoutes.login} className='nav__button'>
-                    Login
-                </Link>
-                <Link to={ERoutes.registration} className='nav__button'>
-                    Register
-                </Link>
+                {!email ? <>
+                    <Link to={ERoutes.login} className='nav__button'>
+                        Login
+                    </Link>
+                    <Link to={ERoutes.registration} className='nav__button'>
+                        Register
+                    </Link>
+                </> : <div>123</div>}
             </div>
             <div
-                className={`nav__controls-mobile${
-                    dropdownMenu ? '-active' : ''
-                }`}
+                className={`nav__controls-mobile${dropdownMenu ? '-active' : ''
+                    }`}
             >
                 <ul className='nav__list-mobile'>
                     {list.map((item, index) => (

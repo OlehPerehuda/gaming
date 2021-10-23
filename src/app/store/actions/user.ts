@@ -10,6 +10,7 @@ import { UserMainInfo } from '../../../entities/user';
 
 export const REGISTER_USER: string = 'REGISTER_USER';
 export const LOGIN_USER: string = 'LOGIN_USER';
+export const IS_LOGINED: string = 'IS_LOGINED';
 
 export const register = (user: UserMainInfo) => ({
     type: REGISTER_USER,
@@ -19,6 +20,11 @@ export const register = (user: UserMainInfo) => ({
 export const login = (user: { email: string; password: string }) => ({
     type: LOGIN_USER,
     payload: user,
+});
+
+export const isLogined = (isLogined: boolean) => ({
+    type: IS_LOGINED,
+    payload: isLogined,
 });
 
 const auth = getAuth();
@@ -60,9 +66,10 @@ export const loginUser = (user: { email: string; password: string }) =>
             if (!auth.currentUser) {
                 console.log('error');
                 return;
-            }
-            const docSnap = await getDoc(doc(db, 'user', auth.currentUser.uid));
+            };
 
+            const docSnap = await getDoc(doc(db, 'user', auth.currentUser.uid));
+            console.log(docSnap);
             if (docSnap.exists()) {
                 console.log('Document data:', docSnap.data());
             } else {

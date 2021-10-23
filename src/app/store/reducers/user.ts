@@ -1,25 +1,22 @@
 import { LOGIN_USER, REGISTER_USER } from "../actions/user";
 
-export class UserState {
-    constructor(
-        public email: string,
-        public password: string,
-    ) { };
-};
+export interface IUserState {
+    email: string,
+    firstName: string,
+    lastName: string,
+}
 
-export const userReducer = (state: UserState, action: any) => {
+export const userReducer = (state: IUserState, action: any) => {
     switch (action.type) {
         case REGISTER_USER:
             return {
                 ...state,
-                email: action.payload.email,
-                password: action.payload.password,
+                ...action.payload,
             };
         case LOGIN_USER:
             return {
                 ...state,
-                email: action.payload.email,
-                password: action.payload.password,
+                ...action.payload,
             };
         default: {
             return {...state};
