@@ -12,7 +12,6 @@ app.get('/some-route', (req, res) => {
 
 /* final catch-all route to index.html defined last */
 app.get('/*', (req, res) => {
-    console.log(process.env);
     res.sendFile(path.join(__dirname, 'build') + '/index.html');
 });
 

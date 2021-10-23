@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
-console.log(process.env);
+
 module.exports = {
     mode: 'development',
     experiments: {
@@ -20,6 +20,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Games',
             template: './public/index.html',
+        }),
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
         }),
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(dotenv.config().parsed), // it will automatically pick up key values from .env file
