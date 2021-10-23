@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { registerUser } from '../../app/store/actions/user';
 
-import { RouteConfig } from '../../routes';
+import { ERoutes } from '../../routes';
 
 import { UserAuthValue } from '../../app/components/common/UserAuthValue';
 
@@ -41,14 +41,14 @@ const Login: React.FC = () => {
             firstName,
             placeHolder: 'Please, enter first name',
             type: 'text',
-            handleChange: setFirstName
+            handleChange: setFirstName,
         },
         {
             lastName,
             placeHolder: 'Please, enter last name',
             type: 'text',
             handleChange: setLastName,
-        }
+        },
     ];
 
     return (
@@ -56,25 +56,18 @@ const Login: React.FC = () => {
             <h1>SIGN UP</h1>
             <form onSubmit={handleSumbit}>
                 {authValues.map((authValue: any) => {
-                    return <UserAuthValue {...authValue} />
+                    return <UserAuthValue {...authValue} />;
                 })}
-                <input
-                    value='submit'
-                    type='submit'
-                />
+                <input value='submit' type='submit' />
             </form>
             <div>
                 <div>
-                    <p>
-                        Already registred?
-                    </p>
-                    <Link to={RouteConfig.Login.path}>
-                        Sign In
-                    </Link>
+                    <p>Already registred?</p>
+                    <Link to={ERoutes.login}>Sign In</Link>
                 </div>
             </div>
         </>
-    )
+    );
 };
 
 export default Login;

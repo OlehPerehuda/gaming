@@ -1,5 +1,7 @@
-import React, { lazy } from 'react';
+import React, { Fragment, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { Header } from '../app/components/Header';
+import { AuthLayout } from '../app/components/AuthLayout';
 
 /** TODO: imports components with lazy loading */
 const Main = lazy(() => import('../modules/Main'));
@@ -9,67 +11,40 @@ const Details = lazy(() => import('../modules/Details'));
 const CreatePost = lazy(() => import('../modules/CreatePost'));
 const Admins = lazy(() => import('../modules/Admins'));
 
-/** Route base config implementation */
-export class ComponentRoutes {
-    /** data route config*/
-    constructor(
-        public path: string,
-        public component: React.FC<any>,
-        public exact: boolean,
-        public children?: ComponentRoutes[]
-    ) { };
-};
+export enum ERoutes {
+    home = '/',
+    details = '/details/:id',
+    admin = '/admin',
+    login = '/login',
+    registration = '/registration',
+    create = '/create',
+}
 
-/** Route config implementation */
-export class RouteConfig {
-    public static Main: ComponentRoutes = new ComponentRoutes(
-        '/',
-        Main,
-        true,
-    );
-    public static Details: ComponentRoutes = new ComponentRoutes(
-        '/details/:id',
-        Details,
-        false,
-    );
-    public static Login: ComponentRoutes = new ComponentRoutes(
-        '/login',
-        Login,
-        true,
-    );
-    public static Registration: ComponentRoutes = new ComponentRoutes(
-        '/register',
-        Registration,
-        true,
-    );
-    public static CreatePost: ComponentRoutes = new ComponentRoutes(
-        '/create',
-        CreatePost,
-        true,
-    );
-    public static Admins: ComponentRoutes = new ComponentRoutes(
-        '/admins',
-        Admins,
-        true,
-    );
-    public static routes: ComponentRoutes[] = [
-        this.Main,
-        this.Registration,
-        this.Login,
-        this.Details,
-        this.CreatePost,
-        this.Admins,
-    ];
-};
+const authRouteConfig = [
+    { path: ERoutes.login, component: Login, exact: true },
+    { path: ERoutes.registration, component: Registration, exact: true },
+];
+const routeConfig = [
+    { path: ERoutes.admin, component: Admins, exact: true },
+    { path: ERoutes.create, component: CreatePost, exact: true },
+    { path: ERoutes.home, component: Main, exact: true },
+    { path: ERoutes.details, component: Details, exact: true },
+];
 
-export const Routes = () =>
+export const Routes = () => (
     <Switch>
-        {RouteConfig.routes.map((route, index) =>
-            <Route
-                key={index}
-                path={route.path}
-                component={route.component}
-                exact={route.exact}
-            />
-        )}
+        {authRouteConfig.map((route, index) => (
+            <Fragment key={index}>
+                <AuthLayout>
+                    <Route key={index} {...route} />
+                </AuthLayout>
+            </Fragment>
+        ))}
+        {routeConfig.map((route, index) => (
+            <Fragment key={index}>
+                <Header />
+                <Route {...route} />
+            </Fragment>
+        ))}
     </Switch>
+);
