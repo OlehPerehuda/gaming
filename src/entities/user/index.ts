@@ -1,6 +1,6 @@
-import { Comment } from "../comment";
-import { Game } from "../game";
-import { Like } from "../like";
+import { Comment } from '../comment';
+import { IGame } from '../game';
+import { Like } from '../like';
 
 /** exposes User domain entity */
 export class User {
@@ -13,6 +13,6 @@ export class User {
         public age: string,
         public likes: Like,
         public comments: Comment[],
-        public favourites: Game[],
-    ) { }
+        public favourites: IGame[]
+    ) {}
 }
