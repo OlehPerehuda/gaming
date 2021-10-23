@@ -48,6 +48,7 @@ export const registerUser = (user: UserMainInfo) =>
                 favourites: [],
             });
             dispatch(register(user));
+            location.pathname = '/';
         } catch (error) {
             console.log(error);
         }

@@ -70,7 +70,6 @@
         ],
         "@typescript-eslint/require-await": "warn",
         "@typescript-eslint/semi": ["warn", "always"],
-        "arrow-body-style": "warn",
         "comma-dangle": ["warn", "always-multiline"],
         "constructor-super": "warn",
         "import/no-default-export": "off",
@@ -161,7 +160,6 @@
         "object-curly-spacing": ["warn", "always"],
         "operator-assignment": ["warn", "always"],
         "padded-blocks": ["warn", "never"],
-        "quotes": ["warn", "single"],
         "semi-spacing": "warn",
         "semi-style": ["warn", "last"],
         "space-before-blocks": "warn",
@@ -190,7 +188,6 @@
                 "allowArrowFunctions": true
             }
         ],
-        "jsx-quotes": ["warn", "prefer-double"],
         "line-comment-position": [
             "warn",
             {
