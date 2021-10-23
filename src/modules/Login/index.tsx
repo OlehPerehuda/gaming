@@ -13,6 +13,7 @@ import { UserAuthValue } from '../../app/components/common/UserAuthValue';
 import './index.scss';
 import { authValues } from './consts';
 import { IField } from './interface';
+import { FormWrapper } from '../../app/components/FormWrapper';
 
 const Login: React.FC = () => {
     const dispatch = useDispatch();
@@ -35,17 +36,15 @@ const Login: React.FC = () => {
         setForm(newForm);
     };
 
-    const handleSumbit = (e: any) => {
-        e.preventDefault();
-        if (!form.email.value || !form.password.value) {
-            return;
+    const handleSumbit = () => {
+        if (form.email.value && form.password.value) {
+            dispatch(
+                loginUser({
+                    email: form.email.value,
+                    password: form.password.value,
+                })
+            );
         }
-        dispatch(
-            loginUser({
-                email: form.email.value,
-                password: form.password.value,
-            })
-        );
     };
 
     return (
@@ -54,7 +53,10 @@ const Login: React.FC = () => {
                 + Create new Account
             </Link>
             <h4 className='login__title'>Get in!</h4>
-            <form className='login__form' onSubmit={handleSumbit}>
+            <FormWrapper
+                handleSumbit={handleSumbit}
+                isValidForm={!!form.email.value && !!form.password.value}
+            >
                 {/* @ts-ignore */}
                 {authValues.map((authValue: IField, index) => {
                     return (
@@ -63,22 +65,11 @@ const Login: React.FC = () => {
                             handleChange={handleChange(authValue.name)}
                             error={form[authValue.name]?.error}
                             value={form[authValue.name]?.value}
-                            // className={'login__input'}
                             key={index}
                         />
                     );
                 })}
-                <input
-                    className={cs(
-                        'login__submit',
-                        form.email.value &&
-                            form.password.value &&
-                            'login__submit-valid'
-                    )}
-                    value='submit'
-                    type='submit'
-                />
-            </form>
+            </FormWrapper>
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import cs from 'classnames';
 import './styles.scss';
 
 export const UserAuthValue: React.FC<{
@@ -10,7 +11,7 @@ export const UserAuthValue: React.FC<{
     return (
         <>
             <input
-                className={error && 'input__error'}
+                className={cs(error && 'input__error', 'auth__input')}
                 value={value}
                 placeholder={placeHolder}
                 type={type}

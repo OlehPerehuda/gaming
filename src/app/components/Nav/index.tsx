@@ -1,17 +1,15 @@
 import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import logo from '../../static/images/nav/logo.png';
 import medium from '../../static/images/nav/medium.png';
 import twitter from '../../static/images/nav/twitter.png';
 import telegram from '../../static/images/nav/telegram.png';
 import discord from '../../static/images/nav/discord.png';
 import { Cross, DropdownNavBar } from '../../static/images/nav/svg';
-
-import './index.scss';
-import { Link } from 'react-router-dom';
 import { ERoutes } from '../../../routes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import './index.scss';
 
 export const Nav = () => {
     const { email } = useSelector((state: RootState) => state.user);
