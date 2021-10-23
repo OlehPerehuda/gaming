@@ -46,6 +46,7 @@ export const registerUser = (user: UserMainInfo) => async function (dispatch: Di
     } catch (error) {
         console.log(error);
     };
+}
 /** thunk that implements user login */
 export const loginUser = (user: { email: string, password: string }) => async function (dispatch: Dispatch) {
     try {
@@ -73,4 +74,4 @@ export const loginUser = (user: { email: string, password: string }) => async fu
     } catch (error) {
         console.log(error);
     }
-};
+}
