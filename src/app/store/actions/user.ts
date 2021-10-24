@@ -37,34 +37,29 @@ const auth = getAuth();
 export const registerUser = (user: UserMainInfo) =>
     async function (dispatch: Dispatch) {
         try {
-            const storage = getStorage();
-            const storageRef = ref(storage, 'untitled-b0e1d');
-            storageRef.name = 'test.png';
-            await uploadString(storageRef, user?.image, 'base64');
-            return;
-            // await createUserWithEmailAndPassword(
-            //     auth,
-            //     user.email,
-            //     user.password
-            // );
+            await createUserWithEmailAndPassword(
+                auth,
+                user.email,
+                user.password
+            );
 
-            // if (!auth.currentUser) {
-            //     console.log('error');
-            //     return;
-            // }
+            if (!auth.currentUser) {
+                console.log('error');
+                return;
+            }
 
-            // await setDoc(doc(db, 'user', auth.currentUser.uid), {
-            //     email: user.email,
-            //     password: user.password,
-            //     firstName: user.firstName,
-            //     lastName: user.lastName,
-            //     id: auth.currentUser.uid,
-            //     isAdmin: false,
-            //     comments: [],
-            //     favourites: [],
-            // });
-            // dispatch(register(user));
-            // location.pathname = '/';
+            await setDoc(doc(db, 'user', auth.currentUser.uid), {
+                email: user.email,
+                password: user.password,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                image: user.image,
+                id: auth.currentUser.uid,
+                comments: [],
+                favourites: [],
+            });
+            dispatch(register(user));
+            location.pathname = '/';
         } catch (error) {
             console.log(error);
         }

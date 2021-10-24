@@ -5,7 +5,7 @@
         @extend %wrapper;
     }
     &__text-area {
-        margin-top: 90px;
+        margin: 20px 0;
         display: flex;
         justify-content: center;
         align-items: flex-end;
@@ -21,7 +21,7 @@
         text-align: end;
     }
     &__title {
-        font-size: 62px;
+        font-size: 36px;
     }
 }
 

@@ -11,7 +11,7 @@ export interface IGame {
     picture: string;
     status: string;
     socials?: SocialsMedia;
-    marketplace: MarketPlace;
+    marketplace?: MarketPlace;
     creatorID: string;
     createdDate: string;
     genre: string;

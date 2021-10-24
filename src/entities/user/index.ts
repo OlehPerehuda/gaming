@@ -22,3 +22,11 @@ export class User {
         public favourites: IGame[]
     ) {}
 }
+
+export interface IUser {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    image: string,
+}
