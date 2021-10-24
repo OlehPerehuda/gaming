@@ -73,8 +73,7 @@ export const getUserInfo = (id?: string) =>
             }
             const docSnap = await getDoc(doc(db, 'user', id));
             if (docSnap.exists()) {
-                console.log('Document data:', docSnap.data());
-                dispatch(login(docSnap.data() as any));
+                dispatch(login({ ...(docSnap.data() as any), id }));
             } else {
                 // doc.data() will be undefined in this case
                 console.log('No such document!');
@@ -101,7 +100,7 @@ export const loginUser = (user: { email: string; password: string }) =>
                 // doc.data() will be undefined in this case
                 console.log('No such document!');
             }
-            dispatch(login(user));
+            dispatch(login({ ...docSnap.data, ...user }));
             location.pathname = '/';
         } catch (error) {
             console.log(error);

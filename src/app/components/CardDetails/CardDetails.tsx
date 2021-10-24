@@ -29,7 +29,7 @@ export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                     </div>
                     <div className='description__comments'>
                         <img src={commentImg} alt='' />
-                        Comments: {gameDetails.comments.length}
+                        Comments: {gameDetails.comments?.length}
                     </div>
                 </div>
             </div>
