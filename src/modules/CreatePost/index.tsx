@@ -1,15 +1,14 @@
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { getAuth } from '@firebase/auth';
 
 import { createGame } from '../../app/store/actions/games';
 
-import { createPostFormConfig } from './consts';
 
 import { FormWrapper } from '../../app/components/FormWrapper';
 import { UserAuthValue } from '../../app/components/common/UserAuthValue';
+import { createPostFormConfig } from './consts';
 
 import './index.scss';
 
@@ -48,7 +47,7 @@ const CreatePost: React.FC = () => {
         currency: {
             value: '$',
             error: '',
-        }
+        },
     });
 
     const handleChange = (fieldName: string) => (value: string) => {
@@ -64,7 +63,7 @@ const CreatePost: React.FC = () => {
 
         if (!auth.currentUser) {
             return;
-        };
+        }
 
         const id = auth.currentUser.uid;
 
@@ -89,10 +88,7 @@ const CreatePost: React.FC = () => {
     return (
         <div className='create-post'>
             <h4 className='create-post__title'>Create Post!</h4>
-            <FormWrapper
-                handleSumbit={handleSumbit}
-                isValidForm={true}
-            >
+            <FormWrapper handleSumbit={handleSumbit} isValidForm={true}>
                 {createPostFormConfig.map((formField: any, index) => {
                     return (
                         <UserAuthValue

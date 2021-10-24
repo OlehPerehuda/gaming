@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import game from '../../static/images/main/game.png';
 import commentImg from '../../static/images/main/comment.png';
-import './index.scss';
 import { IGame } from '../../../entities/game';
+
+import './index.scss';
 
 export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     return (

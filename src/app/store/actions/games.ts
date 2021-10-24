@@ -1,24 +1,24 @@
 import { Dispatch } from 'redux';
 import {
-    signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     getAuth,
+    signInWithEmailAndPassword,
 } from 'firebase/auth';
 import {
-    collection,
+    FieldPath,
+    Firestore,
+    QueryConstraint,
     addDoc,
+    collection,
     doc,
     getDoc,
-    Firestore,
     getDocs,
-    setDoc,
-    query,
-    where,
-    FieldPath,
-    orderBy,
-    startAfter,
     limit,
-    QueryConstraint,
+    orderBy,
+    query,
+    setDoc,
+    startAfter,
+    where,
 } from 'firebase/firestore';
 import { db, firebaseApp } from '../../../firebase';
 import { IGame } from '../../../entities/game';
@@ -56,13 +56,13 @@ export const loadGames = ({
     search: string;
     searchField: string;
 }) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
-            //@ts-ignore
+            // @ts-ignore
             const cond: QueryConstraint[] = [
                 // orderBy('createdDate'),
                 !!search ? where('name', '>=', search) : false,
-                !!search ? where('name', '<=', search + '\uf8ff') : false,
+                !!search ? where('name', '<=', `${search}\uf8ff`) : false,
                 limit(perPage),
             ].filter(Boolean);
             const querySnapshot = await getDocs(
@@ -84,7 +84,7 @@ export const loadGames = ({
 
 /** thunk that implements create game */
 export const createGame = (game: Omit<IGame, 'id'>) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         if (!auth.currentUser) {
             return;
         }
@@ -100,7 +100,7 @@ export const createGame = (game: Omit<IGame, 'id'>) =>
 
 /** thunk that implements load game */
 export const loadGameByID = (id: string) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
             const docSnap = await getDoc(doc(db, 'game', id));
             if (docSnap.exists()) {

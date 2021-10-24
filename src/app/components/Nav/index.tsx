@@ -39,7 +39,7 @@ export const Nav = () => {
             <Link to='/'>
                 <img className='nav__logo' src={logo} alt='logo' />
             </Link>
-            <div className="nav__wrapper">
+            <div className='nav__wrapper'>
                 <div className='nav__controls'>
                     <ul className='nav__list'>
                         {SocialList.map((item, index) =>
@@ -56,9 +56,8 @@ export const Nav = () => {
                     </ul>
                 </div>
                 <div
-                    className={`nav__controls-mobile${
-                        dropdownMenu ? '-active' : ''
-                    }`}
+                    className={`nav__controls-mobile${dropdownMenu ? '-active' : ''
+                        }`}
                 >
                     <ul className='nav__list-mobile'>
                         {SocialList.map((item, index) =>
@@ -86,7 +85,7 @@ export const Nav = () => {
                         />
                     </a>
                 </div>
-                {!email ?(
+                {!email ?
                     <>
                         <Link to={ERoutes.login} className='nav__button'>
                             <FormattedMessage
@@ -101,27 +100,45 @@ export const Nav = () => {
                             />
                         </Link>
                     </>
-                ) : (
-                    <div className="nav__status">
-                        <span className="nav__status__name">
+                    :
+                    <div className='nav__status'>
+                        <span className='nav__status__name'>
                             Welcome, {firstName}
                         </span>
-                        <div className="nav__status__user" onClick={() => handleControls(prev => !prev)}>
+                        <div
+                            className='nav__status__user'
+                            onClick={() => handleControls((prev) => !prev)}
+                        >
                             {userControls &&
-                                <div className="nav__status__user-controls">
-                                    <div className="nav__status__logout" onClick={handleLogout}>Logout</div>
-                                    <Link className="nav__status__logout" to={ERoutes.edit}>Edit profile</Link>
-                                    <Link className="nav__status__logout" to={ERoutes.home}>Go to home</Link>
+                                <div className='nav__status__user-controls'>
+                                    <div
+                                        className='nav__status__logout'
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </div>
+                                    <Link
+                                        className='nav__status__logout'
+                                        to={ERoutes.edit}
+                                    >
+                                        Edit profile
+                                    </Link>
+                                    <Link
+                                        className='nav__status__logout'
+                                        to={ERoutes.home}
+                                    >
+                                        Go to home
+                                    </Link>
                                 </div>
                             }
                             <img
-                                className="nav__status__user__profile"
-                                alt="profile"
+                                className='nav__status__user__profile'
+                                alt='profile'
                                 src={image}
                             />
                         </div>
                     </div>
-                )}
+                }
                 <div
                     className='nav__dropdown'
                     onClick={() => setDropdownMenu(!dropdownMenu)}
@@ -129,7 +146,7 @@ export const Nav = () => {
                     {dropdownMenu ? <Cross /> : <DropdownNavBar />}
                 </div>
                 <select
-                    className="nav__language"
+                    className='nav__language'
                     onChange={handleChangeLang}
                     value={lang}
                 >
@@ -137,6 +154,6 @@ export const Nav = () => {
                     <option value='ru'>RU</option>
                 </select>
             </div>
-        </nav >
+        </nav>
     );
 };

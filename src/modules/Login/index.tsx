@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 /** just for test rigth now */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cs from 'classnames';

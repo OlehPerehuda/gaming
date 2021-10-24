@@ -22,7 +22,7 @@ export const createPostFormConfig = [
     {
         name: 'rated',
         placeHolder: 'Please, enter rated',
-        type: 'text'
+        type: 'text',
     },
     {
         name: 'price',
