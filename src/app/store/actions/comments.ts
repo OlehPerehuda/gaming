@@ -3,7 +3,6 @@ import {
   collection,
   doc,
   getDoc,
-  setDoc,
   updateDoc,
   deleteDoc,
 } from "@firebase/firestore";
@@ -37,7 +36,7 @@ export const addComment = ({
     }
   };
 
-/** thunk that implements saving commnets */
+/** thunk that implements get commnets */
 export const getCommentsByIds = (ids: number[]) =>
   async function (dispatch: Dispatch) {
     try {
@@ -62,6 +61,7 @@ export const getCommentsByIds = (ids: number[]) =>
     }
   };
 
+/** thunk that implements delete comments */
 export const deleteCommentByID = ({
   id,
   gameId,
