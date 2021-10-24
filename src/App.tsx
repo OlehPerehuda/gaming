@@ -5,7 +5,6 @@ import { firebaseAuth } from './firebase';
 import { Routes } from './routes';
 import { getUserInfo } from './app/store/actions/user';
 import { RootState } from './app/store';
-import { changeLocal } from './app/store/actions/local';
 import messages_ru from './lang/ru.json';
 
 const messages = {
@@ -23,14 +22,6 @@ function App() {
 
     const lang = useSelector((state: RootState) => state.local);
 
-    const handleChangeLang = () => {
-        if (lang === 'en') {
-            dispatch(changeLocal('ru'));
-        } else {
-            dispatch(changeLocal('en'));
-        }
-    };
-
     return (
         <IntlProvider
             // @ts-ignore
@@ -38,7 +29,6 @@ function App() {
             locale={lang}
             defaultLocale='en'
         >
-            <div onClick={handleChangeLang}>change lang</div>
             <Suspense
                 fallback={
                     <div>
