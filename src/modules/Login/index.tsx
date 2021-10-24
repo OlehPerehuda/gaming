@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cs from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { loginUser } from '../../app/store/actions/user';
 
 import { ERoutes } from '../../routes';
@@ -47,6 +47,8 @@ const Login: React.FC = () => {
             );
         }
     };
+const { formatMessage } = useIntl();
+    const list = authValues(formatMessage);
 
     return (
         <div className='login'>
@@ -67,7 +69,7 @@ const Login: React.FC = () => {
                 isValidForm={!!form.email.value && !!form.password.value}
             >
                 {/* @ts-ignore */}
-                {authValues.map((authValue: IField, index) => {
+                {list.map((authValue: IField, index) => {
                     return (
                         <UserAuthValue
                             {...authValue}

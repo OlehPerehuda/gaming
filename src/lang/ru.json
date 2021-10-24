@@ -1,5 +1,7 @@
 {
     "test": "Загрузка...",
+    "login": "Логин",
+    "register": "Регистрация",
     "best_game": "Лучшие игры для вас!",
     "best_ecosystem": "Лучшая экосистема для обзора и обмена игровым опытом.",
     "buy": "Купить,",
@@ -8,5 +10,11 @@
     "get_in": "Войти!",
     "create_new": "+ Создать новый аккаунт",
     "already_registred": "Уже зарегистрировались?",
-    "sign_in": "Войти"
+    "sign_in": "Войти",
+    "placeHolderEmail": "Введите адрес электронной почты",
+    "placeHolderPassword": "Введите пароль",
+    "placeHolderFirstName": "Пожалуйста, введите имя",
+    "placeHolderLastName": "Пожалуйста, введите фамилию",
+    "placeHolderSelectImg": "Выберите изображение профиля",
+    "valueSubmit": "Отправить"
 }

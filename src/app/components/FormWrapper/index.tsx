@@ -1,5 +1,7 @@
 import cs from 'classnames';
 import { FormEventHandler } from 'react';
+import { useIntl } from 'react-intl';
+
 import './styles.scss';
 
 export const FormWrapper: React.FC<{
@@ -10,6 +12,8 @@ export const FormWrapper: React.FC<{
         e.preventDefault();
         handleSumbit();
     };
+    const { formatMessage } = useIntl();
+
     return (
         <form className='login__form' onSubmit={onSubmit}>
             {children}
@@ -18,7 +22,7 @@ export const FormWrapper: React.FC<{
                     'login__submit',
                     isValidForm && 'login__submit-valid'
                 )}
-                value='submit'
+                value={formatMessage({ id:'valueSubmit', defaultMessage:'submit' })}
                 type='submit'
             />
         </form>
