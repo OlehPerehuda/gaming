@@ -60,12 +60,11 @@ export const loadGames = ({
 }) =>
   async function (dispatch: Dispatch) {
     try {
-      // @ts-ignore
-      const cond: QueryConstraint[] = [
+      const cond = [
         !!search ? where(searchField, ">=", search) : false,
         !!search ? where(searchField, "<=", search + "\uf8ff") : false,
         limit(perPage),
-      ].filter(Boolean);
+      ].filter(Boolean) as QueryConstraint[];
       const querySnapshot = await getDocs(
         query(collection(db, "game"), ...cond)
       );

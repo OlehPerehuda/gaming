@@ -23,12 +23,7 @@ function App() {
   const { lang } = useSelector((state: RootState) => state.local);
 
   return (
-    <IntlProvider
-      // @ts-ignore
-      messages={messages[lang]}
-      locale={lang}
-      defaultLocale="en"
-    >
+    <IntlProvider messages={messages[lang]} locale={lang} defaultLocale="en">
       <Suspense
         fallback={
           <div>

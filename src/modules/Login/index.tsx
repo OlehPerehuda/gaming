@@ -65,8 +65,7 @@ const Login: React.FC = () => {
         handleSumbit={handleSumbit}
         isValidForm={!!form.email.value && !!form.password.value}
       >
-        {/* @ts-ignore */}
-        {list.map((authValue: IField, index) => {
+        {list.map((authValue: IField, index: number) => {
           return (
             <UserAuthValue
               {...authValue}
