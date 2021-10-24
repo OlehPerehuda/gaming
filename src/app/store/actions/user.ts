@@ -34,7 +34,9 @@ export const login = (user: { email: string; password: string }) => ({
     payload: user,
 });
 
-export const update = (user: IUser) => ({
+export const update = (
+    user: Pick<IUser, 'firstName' | 'lastName' | 'image'>
+) => ({
     type: UPDATE_USER,
     payload: user,
 });
@@ -133,11 +135,9 @@ export const logoutUser = () =>
         }
     };
 
-export const updateUser = (user: {
-    firstName: string;
-    lastName: string;
-    image: string;
-}) =>
+export const updateUser = (
+    user: Pick<IUser, 'firstName' | 'lastName' | 'image'>
+) =>
     async function (dispatch: Dispatch) {
         try {
             if (!auth.currentUser) {
