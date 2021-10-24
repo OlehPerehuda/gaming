@@ -1,10 +1,9 @@
-import { Comment } from '../comment';
-import { Like } from '../like';
 import { MarketPlace } from '../../types/marketplace';
 import { SocialsMedia } from '../../types/socials';
 
 /** exposes Game domain entity */
 export interface IGame {
+    id: string;
     name: string;
     hashtages?: string[];
     description: string;
@@ -18,6 +17,6 @@ export interface IGame {
     rated: string;
     price: string;
     currency: string;
-    likes: Like[];
-    comments: Comment[];
+    likes: number[];
+    comments: number[];
 }
