@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FormattedDate } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { IGame } from '../../../entities/game';
 import { IUser } from '../../../entities/user';
 import { RootState } from '../../store';
 import { addComment } from '../../store/actions/comments';
+
 import './styles.scss';
 
 export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
@@ -14,8 +15,8 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     const { id } = useParams<{ id: string }>();
     const [description, setDescription] = useState('');
     const user = useSelector((state: RootState) => state.user);
-    const { comments }: { comments: IComment<IUser>[] } = useSelector(
-        (state: RootState) => state.comments
+    const { comments }: { comments: Array<IComment<IUser>> } = useSelector(
+        (state: RootState) => state.comments,
     );
     const handleSubmitComment = () => {
         dispatch(
@@ -26,7 +27,7 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                 creatorID: user.id,
                 likes: [],
                 createdDate: new Date().getDate(),
-            })
+            }),
         );
     };
 
@@ -36,7 +37,7 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     return (
         <section className='details__comments comments'>
             <div className='comments__list'>
-                {comments.map((comment) => (
+                {comments.map((comment) =>
                     <div className='comments__item'>
                         <p>
                             [{comment.creator?.lastName}{' '}
@@ -51,9 +52,9 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                             />
                         </p>
                     </div>
-                ))}
+                )}
             </div>
-            {user.id ? (
+            {user.id ?
                 <>
                     <textarea
                         className='comments__textarea'
@@ -69,11 +70,11 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                         Left comment
                     </div>
                 </>
-            ) : (
+            :
                 <div className='comments__no-access'>
                     Please login to let a comment
                 </div>
-            )}
+            }
         </section>
     );
 };

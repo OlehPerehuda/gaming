@@ -8,8 +8,9 @@ export const changeLocalAction = (local: string) => ({
 });
 
 /** thunk that implements changeng location */
+/* eslint-disable */
 export const changeLocal = (local: string) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
             console.log(local);
             localStorage.setItem('local', local);

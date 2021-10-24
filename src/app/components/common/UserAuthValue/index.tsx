@@ -10,7 +10,7 @@ export const UserAuthValue: React.FC<{
     error: string;
     accept?: string;
 }> = ({ value, placeHolder, type, handleChange, error, accept }) => {
-    const onChange = async (e: any) => {
+    const onChange = async(e: any) => {
         if (type === 'file') {
             const base64File = await getBase64(e.target.files[0]);
             handleChange(base64File);
@@ -29,9 +29,9 @@ export const UserAuthValue: React.FC<{
                 onChange={onChange}
                 accept={accept}
             />
-            {error && (
+            {error &&
                 <span className='error__message'>Field is required!</span>
-            )}
+            }
         </>
     );
 };

@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import game from '../../static/images/main/game.png';
+import { FC } from 'react';
 import commentImg from '../../static/images/main/comment.png';
-import './index.scss';
 import { IGame } from '../../../entities/game';
+
+import './index.scss';
 
 export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     return (

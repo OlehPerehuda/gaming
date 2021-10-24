@@ -1,13 +1,13 @@
 /** just for test rigth now */
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { registerUser } from '../../app/store/actions/user';
 import { ERoutes } from '../../routes';
 import { UserAuthValue } from '../../app/components/common/UserAuthValue';
-import { registrationFormConfig } from './consts';
 import { FormWrapper } from '../../app/components/FormWrapper';
+import { registrationFormConfig } from './consts';
 
 import './index.scss';
 

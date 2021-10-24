@@ -1,10 +1,9 @@
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Nav } from '../Nav';
 
 import './index.scss';
 
-export const Header = () => (
+export const Header = () =>
     <header className='header'>
         <div className='header__wrapper'>
             <Nav />
@@ -20,5 +19,5 @@ export const Header = () => (
                 </p>
             </div>
         </div>
-    </header>
-);
+    </header>;
+

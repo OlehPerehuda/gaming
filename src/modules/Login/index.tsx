@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 /** just for test rigth now */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cs from 'classnames';
@@ -11,9 +11,9 @@ import { ERoutes } from '../../routes';
 import { UserAuthValue } from '../../app/components/common/UserAuthValue';
 
 import './index.scss';
+import { FormWrapper } from '../../app/components/FormWrapper';
 import { authValues } from './consts';
 import { IField } from './interface';
-import { FormWrapper } from '../../app/components/FormWrapper';
 
 const Login: React.FC = () => {
     const dispatch = useDispatch();

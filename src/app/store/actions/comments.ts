@@ -24,7 +24,7 @@ export const addComment = ({
     prevComments,
     ...comment
 }: IComment & { gameId: string; prevComments: number[] }) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
             const data = await addDoc(collection(db, 'comments'), comment);
             await updateDoc(doc(db, 'game', gameId), {
@@ -38,14 +38,14 @@ export const addComment = ({
 
 /** thunk that implements saving commnets */
 export const getCommentsByIds = (ids: number[]) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
-            const loaders = ids.map(async (id: number) => {
+            const loaders = ids.map(async(id: number) => {
                 const docSnap = await getDoc(doc(db, 'comments', id as any));
                 if (!docSnap.data()) {
                     return;
                 }
-                //@ts-ignore
+                // @ts-ignore
                 const comment: IComment = docSnap.data();
                 const userSnap = await getDoc(
                     doc(db, 'user', comment.creatorID)
