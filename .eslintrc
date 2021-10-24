@@ -70,7 +70,6 @@
         ],
         "@typescript-eslint/require-await": "warn",
         "@typescript-eslint/semi": ["warn", "always"],
-        "comma-dangle": ["warn", "always-multiline"],
         "constructor-super": "warn",
         "import/no-default-export": "off",
         "import/order": "warn",
