@@ -3,20 +3,10 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
-import { getStorage, ref, uploadString } from "firebase/storage";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db, firebaseAuth } from "../../../firebase";
-import { IUser, UserMainInfo } from "../../../entities/user";
+import { IUser, IUserWithID, IUserWithPassword } from "../../../entities/user";
 
 export const REGISTER_USER: string = "REGISTER_USER";
 export const LOGIN_USER: string = "LOGIN_USER";
@@ -24,7 +14,7 @@ export const IS_LOGINED: string = "IS_LOGINED";
 export const LOGOUT: string = "LOGOUT";
 export const UPDATE_USER: string = "UPDATE_USER";
 
-export const register = (user: UserMainInfo) => ({
+export const register = (user: IUserWithID) => ({
   type: REGISTER_USER,
   payload: user,
 });
@@ -52,7 +42,7 @@ export const logout = () => ({
 
 const auth = getAuth();
 /** thunk that implements user registration */
-export const registerUser = (user: UserMainInfo) =>
+export const registerUser = (user: IUserWithPassword) =>
   async function (dispatch: Dispatch) {
     try {
       await createUserWithEmailAndPassword(auth, user.email, user.password);
@@ -72,7 +62,7 @@ export const registerUser = (user: UserMainInfo) =>
         comments: [],
         favourites: [],
       });
-      dispatch(register(user));
+      dispatch(register({ ...user, id: auth.currentUser.uid }));
       location.pathname = "/";
     } catch (error) {
       console.log(error);

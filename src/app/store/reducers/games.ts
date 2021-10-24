@@ -1,16 +1,15 @@
-import { DELETE_GAME, LOAD_GAMES, LOAD_SELECTED_GAME } from "../actions/games";
-
-interface IGame {}
+import { IGame } from "../../../entities/game";
+import { IPayload } from "../../../interfaces/redux";
+import { LOAD_GAMES, LOAD_SELECTED_GAME } from "../actions/games";
 
 const initState = {
   data: [],
   selectedGame: {},
-  loading: true,
 };
 
 export const gamesReducer = (
   state: { games: IGame[] | IGame },
-  action: any
+  action: IPayload<IGame[]>
 ) => {
   switch (action.type) {
     case LOAD_GAMES:
