@@ -6,12 +6,16 @@ import { CardDetails } from '../../app/components/CardDetails/CardDetails';
 import { Comments } from '../../app/components/Comments/Comments';
 import { RootState } from '../../app/store';
 import { loadGameByID } from '../../app/store/actions/games';
+import { IGame } from '../../entities/game';
 import { ERoutes } from '../../routes';
 import './index.scss';
+
 const Details: React.FC = () => {
     const dispatch = useDispatch();
     const { id } = useParams<{ id: string }>();
-    const { selectedGame } = useSelector((state: RootState) => state.games);
+    const { selectedGame }: { selectedGame: IGame } = useSelector(
+        (state: RootState) => state.games
+    );
     useState(() => {
         if (!id) {
             location.pathname = ERoutes.home;
@@ -22,7 +26,7 @@ const Details: React.FC = () => {
     return (
         <div className='details'>
             <CardDetails gameDetails={selectedGame} />
-            <Comments />
+            <Comments gameDetails={selectedGame} />
         </div>
     );
 };
