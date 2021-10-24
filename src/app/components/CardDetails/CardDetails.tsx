@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { FormattedMessage } from 'react-intl';
 import game from '../../static/images/main/game.png';
 import commentImg from '../../static/images/main/comment.png';
 import './index.scss';
@@ -22,14 +23,26 @@ export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
 
                 <div className='description__box-comments'>
                     <div>
-                        Price: {gameDetails.price} {gameDetails.currency}
+                        <FormattedMessage
+                            id='price'
+                            defaultMessage='Price: '
+                        />
+                        {gameDetails.price} {gameDetails.currency}
                     </div>
                     <div className='description__rate'>
-                        Rate: {gameDetails.rated} / 10
+                        <FormattedMessage
+                            id='rate'
+                            defaultMessage='Rate: '
+                        />
+                        {gameDetails.rated} / 10
                     </div>
                     <div className='description__comments'>
                         <img src={commentImg} alt='' />
-                        Comments: {gameDetails.comments?.length}
+                        <FormattedMessage
+                            id='comment'
+                            defaultMessage='Comments: '
+                        />
+                        {gameDetails.comments?.length}
                     </div>
                 </div>
             </div>
