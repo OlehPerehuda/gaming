@@ -21,7 +21,7 @@ export const Nav = () => {
     const handleLogout = () => {
         dispatch(logoutUser());
     };
-    const lang = useSelector((state: RootState) => state.local);
+    const { lang } = useSelector((state: RootState) => state.local);
 
     const handleChangeLang = () => {
         if (lang === 'en') {
