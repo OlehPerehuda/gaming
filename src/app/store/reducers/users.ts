@@ -1,25 +1,26 @@
 import { IUser } from "../../../entities/user";
 import { IPayload } from "../../../interfaces/redux";
-import { DELETE_USER } from "../actions/users";
+import { GET_USERS } from "../actions/users";
 
-const initialState: IUser[] = [
-  {
-    firstName: "Oleg",
-    lastName: "T-150",
-    email: "oleh@gmail.com",
-    image: "",
-    isAdmin: false,
-  },
-];
+const initState = {
+  data: [],
+  loading: true,
+};
 
 export const usersReducer = (
-  state: IUser[] = initialState,
-  action: IPayload<IUser>
+  state: { users: IUser },
+  action: IPayload<IUser[]>
 ) => {
   switch (action.type) {
-    case DELETE_USER:
-      return state.filter((user) => user.email !== action.payload.email);
+    case GET_USERS:
+      return {
+        ...state,
+        data: action.payload,
+      };
     default:
-      return [...state];
+      return {
+        ...initState,
+        ...state,
+      };
   }
 };
