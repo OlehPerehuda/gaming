@@ -17,6 +17,7 @@ import {
     orderBy,
     startAfter,
     limit,
+    QueryConstraint,
 } from 'firebase/firestore';
 import { db, firebaseApp } from '../../../firebase';
 import { IGame } from '../../../entities/game';
@@ -39,19 +40,25 @@ const auth = getAuth();
 export const loadGames = ({
     page,
     perPage,
+    search,
+    searchField,
 }: {
     page: number;
     perPage: number;
+    search: string;
+    searchField: string;
 }) =>
     async function (dispatch: Dispatch) {
         try {
+            //@ts-ignore
+            const cond: QueryConstraint[] = [
+                // orderBy('createdDate'),
+                !!search ? where('name', '>=', search) : false,
+                !!search ? where('name', '<=', search + '\uf8ff') : false,
+                limit(perPage),
+            ].filter(Boolean);
             const querySnapshot = await getDocs(
-                query(
-                    collection(db, 'game'),
-                    orderBy('createdDate'),
-                    // // startAfter(lastVisible),
-                    limit(perPage)
-                )
+                query(collection(db, 'game'), ...cond)
             );
             if (querySnapshot.empty) {
                 dispatch(loadGamesAcation([]));
