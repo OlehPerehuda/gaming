@@ -8,7 +8,7 @@ export const Card: React.FC<{card: IGame}> = ({card}) => {
 
     return (
         <div className='card'>
-            <Link to={`deails/id`}>
+            <Link to={`details/id`}>
                 <div
                     className="card__image"
                     style={{backgroundImage: `url("${card.picture}")`}}
