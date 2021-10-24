@@ -1,14 +1,14 @@
-import { CHANGE_LOCAL } from '../actions/local';
+import { CHANGE_LOCAL } from "../actions/local";
 
-const initState = { lang: 'en' };
+const initState = { lang: "en" };
 
 export const localReducer = (state: { lang: string }, action: any) => {
-    switch (action.type) {
-        case CHANGE_LOCAL:
-            return { lang: action.payload };
+  switch (action.type) {
+    case CHANGE_LOCAL:
+      return { lang: action.payload };
 
-        default: {
-            return { ...initState, ...state };
-        }
+    default: {
+      return { ...initState, ...state };
     }
+  }
 };

@@ -1,20 +1,20 @@
-@import '/src/index.scss';
+@import "/src/index.scss";
 
 .users {
-    &__wrapper {
-        @extend %wrapper;
-    }
-    &__list {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    &__item {
-        display: flex;
-        justify-content: space-between;
-        border-radius: 20px;
-        background-color: white;
-        padding: 20px;
-    }
+  &__wrapper {
+    @extend %wrapper;
+  }
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: white;
+    padding: 20px;
+  }
 }
