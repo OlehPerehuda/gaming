@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './index.scss';
-import game from '../../static/images/main/game.png'
+import game from '../../static/images/main/game.png';
 
 export const Card: React.FC<{card: any}> = (card: any) => {
-    const cardData = card.card
+    const cardData = card.card;
     return (
         <div className="card">
-            <Link to={`deails/id`}>
+            <Link to={'details/id'}>
                 <img
                     className="card__image"
                     alt="game"
@@ -31,5 +31,5 @@ export const Card: React.FC<{card: any}> = (card: any) => {
                 </div>
             </Link>
         </div>
-    )
-}
+    );
+};
