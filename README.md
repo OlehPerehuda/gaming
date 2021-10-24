@@ -1,6 +1,31 @@
-# Getting Started with Create React App
+## Structure of project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple and dummy components should be stored in `src/app`.
+Global Entities such as `comment`, `game` and `user` stored in `src/enitites`
+Transation to different language is stored in `src/lang` file. Add new lang here or add new translation.
+`src/modules` contains components which will be rendered in route file. And then inside this component import dummy and simple component from `src/app`.
+Folder `src/utils` contains utils which can be moved between projects.
+`src/firebase` incude setupping of firebase credentials and connecting to firebase and firebase database.
+`.env` file required for this project as it has credential to work with firebase
+
+## Git flow
+
+For new features or new tasks please start branch name from `feature/YOUR_FEATURE` where YOUR_FEATURE name of feature.
+For bug fix start branch from `bug/`
+Main approvers of this project is Bohdan Boiko and Oleh Perehuda. Please add them as reviewers.
+As a plus you can add screens or videos to your PR.
+Remeber Main branch auto deploy to Heroku `https://gaming-agregator.herokuapp.com/`
+
+## Features and libraries
+
+`react-intl` as ligrary to multi lang.
+`react-redux` as global store library
+`redux-thunks` as midleware to create request to firebase
+`react-json-to-csv` as library to conwert and dowload our json data to csv file
+`node-sass` as pre-processor to improve writing styles
+`typescript` to improve readable and better understanding of our aplication.
+`firebase` as our database and auth service.
+`react-router-dom` to create react routing. And to have private routes
 
 ## Available Scripts
 
@@ -8,11 +33,11 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Start node server from file `server.ts` which hosted on 3000 by default and get files from build folder
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `yarn dev`
+
+Start React aplication with hot reload and other features
 
 ### `yarn test`
 
@@ -28,19 +53,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
