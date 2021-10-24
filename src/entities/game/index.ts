@@ -13,7 +13,7 @@ export interface IGame {
     socials?: SocialsMedia;
     marketplace?: MarketPlace;
     creatorID: string;
-    createdDate?: string;
+    createdDate: string;
     genre: string;
     rated: string;
     price: string;

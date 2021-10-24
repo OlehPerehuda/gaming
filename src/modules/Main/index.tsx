@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card } from '../../app/components/Card';
 import { loadGames } from '../../app/store/actions/games';
+import { IGame } from '../../entities/game';
 import './index.scss';
 
 const Main = () => {
@@ -41,8 +42,8 @@ const Main = () => {
             </select>
             <div onClick={handleSearch}>Search</div>
             <div className='games__cards-area'>
-                {gamesList.map((item: any, index: any) => (
-                    <Card key={index} card={item} />
+                {gamesList.map((item: IGame, index: any) => (
+                    <Card key={index} card={item}/>
                 ))}
             </div>
             <select value={perPage} onChange={handleChangeNumber(setPerPage)}>

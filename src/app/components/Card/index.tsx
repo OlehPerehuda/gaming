@@ -1,28 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './index.scss';
-import game from '../../static/images/main/game.png';
+import { IGame } from '../../../entities/game';
 
-export const Card: React.FC<{ card: any }> = (card: any) => {
-    const cardData = card.card;
+import './index.scss';
+
+export const Card: React.FC<{card: IGame}> = ({card}) => {
+
     return (
         <div className='card'>
             <Link to={`deails/id`}>
-                <img
-                    className='card__image'
-                    alt='game'
-                    src={cardData.picture}
-                />
-                <div className='card__text-area'>
-                    <h4 className='card__title'>{cardData.name}</h4>
-                    <p className='card__description'>{cardData.description}</p>
+                <div
+                    className="card__image"
+                    style={{backgroundImage: `url("${card.picture}")`}}
+                    />
+                <div className="card__text-area">
+                    <h4 className="card__title">{card.name}</h4>
+                    <p className="card__description">
+                        {card.description}
+                    </p>
                 </div>
-                <div className='card__stats'>
-                    <div className='card__rate'>
-                        <span className='card__rate__title'>Rate: </span>
-                        <span className='card__rate__value'>
-                            {cardData.rated}
-                        </span>
+                <div className="card__stats">
+                    <div className="card__rate">
+                        <span className="card__rate__title">Rate: </span>
+                        <span className="card__rate__value">{card.rated}</span>
                     </div>
                     <div className='card__comments'>
                         <span className='card__comments__title'>
@@ -31,6 +31,9 @@ export const Card: React.FC<{ card: any }> = (card: any) => {
                         <span className='card__comments__value'>1000</span>
                     </div>
                 </div>
+                    <p className="card__date">
+                        Created: {new Date(card.createdDate).toLocaleString()}
+                    </p>
             </Link>
         </div>
     );

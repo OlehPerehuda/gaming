@@ -80,6 +80,7 @@ const CreatePost: React.FC = () => {
                 currency: form.currency.value,
                 creatorID: id,
                 likes: [],
+                createdDate: Date.now().toString(),
                 comments: [],
             })
         );

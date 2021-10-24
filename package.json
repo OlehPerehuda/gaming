@@ -25,7 +25,6 @@
         "redux-actions": "^2.6.5",
         "redux-thunk": "^2.3.0",
         "sass": "^1.43.3",
-        "ts-loader": "^9.2.6",
         "typescript": "^4.1.2",
         "web-vitals": "^1.0.1",
         "webpack": "4.44.2"
