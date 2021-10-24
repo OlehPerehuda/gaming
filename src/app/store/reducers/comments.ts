@@ -1,4 +1,5 @@
 import { IComment } from "../../../entities/comment";
+import { IPayload } from "../../../interfaces/redux";
 import { LOAD_COMMENTS } from "../actions/comments";
 
 const initState = {
@@ -6,7 +7,7 @@ const initState = {
 };
 export const commentsReducer = (
   state: { comments: IComment[] },
-  action: any
+  action: IPayload<IComment[]>
 ) => {
   switch (action.type) {
     case LOAD_COMMENTS:

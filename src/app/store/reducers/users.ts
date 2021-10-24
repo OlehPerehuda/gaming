@@ -1,22 +1,26 @@
-import { IUser } from '../../../entities/user';
-import { GET_USERS } from '../actions/users';
+import { IUser } from "../../../entities/user";
+import { IPayload } from "../../../interfaces/redux";
+import { GET_USERS } from "../actions/users";
 
 const initState = {
-    data: [],
-    loading: true,
+  data: [],
+  loading: true,
 };
 
-export const usersReducer = (state: { users: IUser }, action: any) => {
-    switch (action.type) {
-        case GET_USERS:
-            return {
-                ...state,
-                data: action.payload,
-            }
-        default:
-            return {
-                ...initState,
-                ...state
-            };
-    }
+export const usersReducer = (
+  state: { users: IUser },
+  action: IPayload<IUser[]>
+) => {
+  switch (action.type) {
+    case GET_USERS:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    default:
+      return {
+        ...initState,
+        ...state,
+      };
+  }
 };

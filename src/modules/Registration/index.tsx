@@ -50,6 +50,7 @@ const Login: React.FC = () => {
         password: form.password.value,
         firstName: form.firstName.value,
         lastName: form.lastName.value,
+        isAdmin: false,
       })
     );
   };

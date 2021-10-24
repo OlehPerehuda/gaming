@@ -12,7 +12,6 @@ export const changeLocalAction = (local: string) => ({
 export const changeLocal = (local: string) =>
   async function (dispatch: Dispatch) {
     try {
-      console.log(local);
       localStorage.setItem("local", local);
       dispatch(changeLocalAction(local));
     } catch (error) {

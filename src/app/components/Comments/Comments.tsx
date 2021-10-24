@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FormattedDate, FormattedMessage } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { IComment } from "../../../entities/comment";
 import { IGame } from "../../../entities/game";
-import { IUser } from "../../../entities/user";
 import { RootState } from "../../store";
 import { addComment, deleteCommentByID } from "../../store/actions/comments";
 
 import closeIcon from "../../static/images/main/close.png";
 
 import "./styles.scss";
+import { IComment } from "../../../entities/comment";
+import { IUserWithID } from "../../../entities/user";
 
 export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
   const [description, setDescription] = useState("");
   const user = useSelector((state: RootState) => state.user);
   const { isAdmin } = useSelector((state: RootState) => state.user);
-  const { comments }: { comments: IComment<IUser>[] } = useSelector(
+  const { comments }: { comments: IComment<IUserWithID>[] } = useSelector(
     (state: RootState) => state.comments
   );
 
@@ -33,7 +33,6 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
         prevComments: gameDetails.comments || [],
         description,
         creatorID: user.id,
-        likes: [],
         createdDate: new Date().getDate(),
       })
     );

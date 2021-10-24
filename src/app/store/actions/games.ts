@@ -99,7 +99,7 @@ export const createGame = (game: Omit<IGame, "id">) =>
     }
   };
 
-/** thunk that implements load game */
+/** thunk that implements load game by id */
 export const loadGameByID = (id: string) =>
   async function (dispatch: Dispatch) {
     try {
@@ -109,7 +109,6 @@ export const loadGameByID = (id: string) =>
         dispatch(getCommentsByIds(game.comments) as any);
         dispatch(loadGameAcation(game));
       } else {
-        // doc.data() will be undefined in this case
         console.log("No such document!");
       }
     } catch (error) {

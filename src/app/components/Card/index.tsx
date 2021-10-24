@@ -3,16 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "../../store";
 import { IGame } from "../../../entities/game";
-
 import closeIcon from "../../static/images/main/close.png";
-
 import { deleteGameByID } from "../../store/actions/games";
-
 import "./index.scss";
+import { IUser } from "../../../entities/user";
 
 export const Card: React.FC<{ card: IGame & { id: string } }> = ({ card }) => {
   const dispatch = useDispatch();
-  const { isAdmin } = useSelector((state: RootState) => state.user);
+  const { isAdmin }: IUser = useSelector((state: RootState) => state.user);
 
   const deleteGame = () => {
     dispatch(deleteGameByID(card.id));

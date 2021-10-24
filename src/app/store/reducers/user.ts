@@ -1,3 +1,5 @@
+import { IUser, IUserWithID } from "../../../entities/user";
+import { IPayload } from "../../../interfaces/redux";
 import {
   LOGIN_USER,
   LOGOUT,
@@ -5,13 +7,8 @@ import {
   UPDATE_USER,
 } from "../actions/user";
 
-export interface IUserState {
-  email: string;
-  firstName: string;
-  lastName: string;
-}
-
 const initState = {
+  id: "",
   email: "",
   firstName: "",
   lastName: "",
@@ -19,7 +16,10 @@ const initState = {
   isAdmin: false,
 };
 
-export const userReducer = (state: IUserState = initState, action: any) => {
+export const userReducer = (
+  state: IUserWithID = initState,
+  action: IPayload<IUserWithID>
+) => {
   switch (action.type) {
     case REGISTER_USER:
       return {
