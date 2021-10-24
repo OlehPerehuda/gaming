@@ -97,7 +97,7 @@ export const loginUser = (user: { email: string; password: string }) =>
       }
 
       const docSnap = await getDoc(doc(db, "user", auth.currentUser.uid));
-      if (docSnap.exists()) {
+      if (!docSnap.exists()) {
         return;
       }
       // doc.data() will be undefined in this case
