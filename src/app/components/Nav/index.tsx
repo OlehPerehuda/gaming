@@ -120,7 +120,11 @@ export const Nav = () => {
                 >
                     {dropdownMenu ? <Cross /> : <DropdownNavBar />}
                 </div>
-                <select onChange={handleChangeLang} value={lang}>
+                <select
+                    className="nav__language"
+                    onChange={handleChangeLang}
+                    value={lang}
+                >
                     <option value='en'>ENG</option>
                     <option value='ru'>RU</option>
                 </select>

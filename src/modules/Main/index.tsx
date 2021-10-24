@@ -32,24 +32,33 @@ const Main = () => {
 
     return (
         <section className='games'>
-            <input value={search} onChange={handleChangeString(setSearch)} />
-            <select
-                value={searchField}
-                onChange={handleChangeString(setSearchField)}
-            >
-                <option value='name'>Name</option>
-                <option value='description'>Description</option>
-            </select>
-            <div onClick={handleSearch}>Search</div>
-            <div className='games__cards-area'>
-                {gamesList.map((item: IGame, index: any) => (
-                    <Card key={index} card={item}/>
-                ))}
+            <div className="games__wrapper">
+                <div className="games__controls">
+                    <select
+                        className="games__language"
+                        value={searchField}
+                        onChange={handleChangeString(setSearchField)}
+                        >
+                        <option value='name'>Name</option>
+                        <option value='description'>Description</option>
+                    </select>
+                    <input
+                    placeholder="Type to search"
+                    className="games__search"
+                    value={search} onChange={handleChangeString(setSearch)} />
+                    <div
+                    className="games__confirm-search" onClick={handleSearch}>Search</div>
+                </div>
+                <div className='games__cards-area'>
+                    {gamesList.map((item: IGame, index: any) => (
+                        <Card key={index} card={item}/>
+                        ))}
+                </div>
+                <select value={perPage} onChange={handleChangeNumber(setPerPage)}>
+                    <option value={1}>1</option>
+                    <option value={3}>3</option>
+                </select>
             </div>
-            <select value={perPage} onChange={handleChangeNumber(setPerPage)}>
-                <option value={1}>1</option>
-                <option value={3}>3</option>
-            </select>
         </section>
     );
 };
