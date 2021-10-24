@@ -3,10 +3,15 @@ import { FormattedMessage } from 'react-intl';
 import game from '../../static/images/main/game.png';
 import commentImg from '../../static/images/main/comment.png';
 import { IGame } from '../../../entities/game';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { IComment } from '../../../entities/comment';
 
 import './index.scss';
 
 export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
+    const { comments }: { comments: IComment[] } = useSelector((state: RootState) => state.comments);
+
     return (
         <section className='details__description description'>
             <img
@@ -43,7 +48,7 @@ export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                             id='comment'
                             defaultMessage='Comments: '
                         />
-                        {gameDetails.comments?.length}
+                        {comments.length}
                     </div>
                 </div>
             </div>

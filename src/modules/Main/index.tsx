@@ -11,6 +11,7 @@ const Main = () => {
     const [perPage, setPerPage] = useState(3);
 
     const gamesList = useSelector((state: any) => state.games.data);
+
     const [search, setSearch] = useState('');
     const [searchField, setSearchField] = useState('name');
 
@@ -73,7 +74,7 @@ const Main = () => {
                     </div>
                 </div>
                 <div className='games__cards-area'>
-                    {gamesList.map((item: IGame, index: any) =>
+                    {gamesList.map((item: IGame, index: number) =>
                         <Card key={index} card={item} />
                     )}
                 </div>

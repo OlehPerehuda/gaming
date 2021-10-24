@@ -6,7 +6,9 @@ import { IComment } from '../../../entities/comment';
 import { IGame } from '../../../entities/game';
 import { IUser } from '../../../entities/user';
 import { RootState } from '../../store';
-import { addComment } from '../../store/actions/comments';
+import { addComment, deleteCommentByID } from '../../store/actions/comments';
+
+import closeIcon from '../../static/images/main/close.png';
 
 import './styles.scss';
 
@@ -15,14 +17,20 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     const { id } = useParams<{ id: string }>();
     const [description, setDescription] = useState('');
     const user = useSelector((state: RootState) => state.user);
-    const { comments }: { comments: Array<IComment<IUser>> } = useSelector(
-        (state: RootState) => state.comments,
+    const { isAdmin } = useSelector((state: RootState) => state.user);
+    const { comments }: { comments: IComment<IUser>[] } = useSelector(
+        (state: RootState) => state.comments
     );
+
+    const deleteGame = (_commentID:string) => () => {
+        dispatch(deleteCommentByID({ id: _commentID, gameId: id }));
+    };
+
     const handleSubmitComment = () => {
         dispatch(
             addComment({
                 gameId: id,
-                prevComments: gameDetails.comments,
+                prevComments: gameDetails.comments || [],
                 description,
                 creatorID: user.id,
                 likes: [],
@@ -39,9 +47,16 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
             <div className='comments__list'>
                 {comments.map((comment) =>
                     <div className='comments__item'>
+                        {isAdmin && <div className="comments__item__close">
+                            <img
+                                className="comments__item__close__icon"
+                                src={closeIcon}
+                                onClick={deleteGame(comment.id  as string)}
+                            />
+                        </div>}
                         <p>
-                            [{comment.creator?.lastName}{' '}
-                            {comment.creator?.firstName}]: {comment.description}
+                            [{comment?.creator?.lastName}{' '}
+                            {comment?.creator?.firstName}]: {comment.description}
                         </p>
                         <p>
                             <FormattedMessage
