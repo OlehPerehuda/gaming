@@ -104,7 +104,6 @@ export const loadGameByID = (id: string) =>
             const docSnap = await getDoc(
                 doc(db, 'game', '2RbMIe4iSpd5YKDq6TYu')
             );
-            console.log(docSnap.exists());
             if (docSnap.exists()) {
                 dispatch(loadGameAcation(docSnap.data() as IGame));
             } else {
