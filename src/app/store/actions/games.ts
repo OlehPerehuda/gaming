@@ -72,16 +72,7 @@ export const createGame = (game: IGame) =>
     async function (dispatch: Dispatch) {
         try {
             const querySnapshot = await addDoc(collection(db, 'game'), {
-                name: 'string',
-                description: 'string',
-                picture: 'string',
-                status: 'string',
-                creatorID: 'string',
-                createdDate: 'string',
-                genre: 'string',
-                rated: 'string',
-                price: 'string',
-                currency: 'string',
+                game
             });
             console.log(querySnapshot);
 
