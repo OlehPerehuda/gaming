@@ -17,7 +17,7 @@ export const gamesReducer = (state: { games: IGame[] }, action: any) => {
             };
 
         default: {
-            return { ...initState };
+            return { ...initState, ...state };
         }
     }
 };

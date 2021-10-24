@@ -79,10 +79,9 @@ export const loadGames = ({
 /** thunk that implements user login */
 export const createGame = (game: IGame) =>
     async function (dispatch: Dispatch) {
-
         if (!auth.currentUser) {
             return;
-        };
+        }
 
         try {
             await setDoc(doc(db, 'game', auth.currentUser.uid), game);

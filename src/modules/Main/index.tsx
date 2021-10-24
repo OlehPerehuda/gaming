@@ -29,7 +29,7 @@ const Main = () => {
     const handleSearch = () => {
         dispatch(loadGames({ page, perPage: perPage, search, searchField }));
     };
-
+    console.log(gamesList);
     return (
         <section className='games'>
             <input value={search} onChange={handleChangeString(setSearch)} />
@@ -43,7 +43,7 @@ const Main = () => {
             <div onClick={handleSearch}>Search</div>
             <div className='games__cards-area'>
                 {gamesList.map((item: IGame, index: any) => (
-                    <Card key={index} card={item}/>
+                    <Card key={index} card={item} />
                 ))}
             </div>
             <select value={perPage} onChange={handleChangeNumber(setPerPage)}>

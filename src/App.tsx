@@ -20,7 +20,7 @@ function App() {
         });
     }, []);
 
-    const lang = useSelector((state: RootState) => state.local);
+    const { lang } = useSelector((state: RootState) => state.local);
 
     return (
         <IntlProvider
