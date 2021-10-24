@@ -10,6 +10,7 @@ const Registration = lazy(() => import('../modules/Registration'));
 const Details = lazy(() => import('../modules/Details'));
 const CreatePost = lazy(() => import('../modules/CreatePost'));
 const Admins = lazy(() => import('../modules/Admins'));
+const Users = lazy(() => import('../modules/Users'))
 const Edit = lazy(() => import('../modules/Edit'));
 
 export enum ERoutes {
@@ -19,7 +20,8 @@ export enum ERoutes {
     login = '/auth/login',
     registration = '/auth/registration',
     create = '/create',
-    edit = '/edit'
+    edit = '/edit',
+    users = '/users'
 };
 
 const routeConfig = [
@@ -27,6 +29,7 @@ const routeConfig = [
     { path: ERoutes.admin, component: Admins, exact: true },
     { path: ERoutes.create, component: CreatePost, exact: true },
     { path: ERoutes.details, component: Details, exact: true },
+    { path: ERoutes.users, component: Users, exact: true },
     { path: ERoutes.edit, component: Edit, exact: true },
 ];
 
