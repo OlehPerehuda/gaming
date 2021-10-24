@@ -15,7 +15,10 @@ export const Header = () =>
                     />
                 </h1>
                 <p className='header__description'>
-                    Best ecosystem to review and share game expirience.
+                    <FormattedMessage
+                        id='best_ecosystem'
+                        defaultMessage='Best ecosystem to review and share game expirience.'
+                    />
                 </p>
             </div>
         </div>

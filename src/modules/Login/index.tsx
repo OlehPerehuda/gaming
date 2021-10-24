@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cs from 'classnames';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { loginUser } from '../../app/store/actions/user';
 
 import { ERoutes } from '../../routes';
@@ -46,19 +47,29 @@ const Login: React.FC = () => {
             );
         }
     };
+const { formatMessage } = useIntl();
+    const list = authValues(formatMessage);
 
     return (
         <div className='login'>
             <Link className='login__create' to={ERoutes.registration}>
-                + Create new Account
+                <FormattedMessage
+                    id='create_new'
+                    defaultMessage='+ Create new Account'
+                />
             </Link>
-            <h4 className='login__title'>Get in!</h4>
+            <h4 className='login__title'>
+                <FormattedMessage
+                    id='get_in'
+                    defaultMessage='Get in!'
+                />
+            </h4>
             <FormWrapper
                 handleSumbit={handleSumbit}
                 isValidForm={!!form.email.value && !!form.password.value}
             >
                 {/* @ts-ignore */}
-                {authValues.map((authValue: IField, index) => {
+                {list.map((authValue: IField, index) => {
                     return (
                         <UserAuthValue
                             {...authValue}

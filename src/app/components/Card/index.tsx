@@ -3,7 +3,7 @@ import { IGame } from '../../../entities/game';
 
 import './index.scss';
 
-export const Card: React.FC<{ card: IGame }> = ({ card }) => {
+export const Card: React.FC<{ card: IGame & {id:string}}> = ({ card }) => {
     return (
         <div className='card'>
             <Link to={`details/${card.id}`}>

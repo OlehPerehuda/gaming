@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../static/images/nav/logo.png';
 import { Cross, DropdownNavBar } from '../../static/images/nav/svg';
@@ -54,9 +56,8 @@ export const Nav = () => {
                     </ul>
                 </div>
                 <div
-                    className={`nav__controls-mobile${
-                        dropdownMenu ? '-active' : ''
-                    }`}
+                    className={`nav__controls-mobile${dropdownMenu ? '-active' : ''
+                        }`}
                 >
                     <ul className='nav__list-mobile'>
                         {SocialList.map((item, index) =>
@@ -72,22 +73,34 @@ export const Nav = () => {
                         )}
                     </ul>
                     <a href='' className='nav__button-mobile'>
-                        Login
+                        <FormattedMessage
+                            id='login'
+                            defaultMessage='Login'
+                        />
                     </a>
                     <a href='' className='nav__button-mobile'>
-                        Register
+                        <FormattedMessage
+                            id='register'
+                            defaultMessage='Register'
+                        />
                     </a>
                 </div>
                 {!email ?
                     <>
                         <Link to={ERoutes.login} className='nav__button'>
-                            Login
+                            <FormattedMessage
+                                id='login'
+                                defaultMessage='Login'
+                            />
                         </Link>
                         <Link to={ERoutes.registration} className='nav__button'>
-                            Register
+                            <FormattedMessage
+                                id='register'
+                                defaultMessage='Register'
+                            />
                         </Link>
                     </>
-                 :
+                    :
                     <div className='nav__status'>
                         <span className='nav__status__name'>
                             Welcome, {firstName}
