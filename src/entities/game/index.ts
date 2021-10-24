@@ -1,5 +1,3 @@
-import { Comment } from '../comment';
-import { Like } from '../like';
 import { MarketPlace } from '../../types/marketplace';
 import { SocialsMedia } from '../../types/socials';
 
@@ -19,6 +17,6 @@ export interface IGame {
     rated: string;
     price: string;
     currency: string;
-    likes: Like[];
-    comments: Comment[];
+    likes: number[];
+    comments: number[];
 }

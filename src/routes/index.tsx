@@ -11,6 +11,7 @@ const Details = lazy(() => import('../modules/Details'));
 const CreatePost = lazy(() => import('../modules/CreatePost'));
 const Admins = lazy(() => import('../modules/Admins'));
 const Users = lazy(() => import('../modules/Users'))
+const Edit = lazy(() => import('../modules/Edit'));
 
 export enum ERoutes {
     home = '/',
@@ -29,6 +30,7 @@ const routeConfig = [
     { path: ERoutes.create, component: CreatePost, exact: true },
     { path: ERoutes.details, component: Details, exact: true },
     { path: ERoutes.users, component: Users, exact: true },
+    { path: ERoutes.edit, component: Edit, exact: true },
 ];
 
 export const Routes = () =>

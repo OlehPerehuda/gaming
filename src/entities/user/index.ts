@@ -1,4 +1,4 @@
-import { Comment } from '../comment';
+import { IComment } from '../comment';
 import { IGame } from '../game';
 import { Like } from '../like';
 
@@ -18,15 +18,15 @@ export class User {
         public mainInfo: UserMainInfo,
         public id: string,
         public likes: Like,
-        public comments: Comment[],
+        public comments: IComment[],
         public favourites: IGame[]
     ) {}
 }
 
 export interface IUser {
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    image: string,
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    image: string;
 }
