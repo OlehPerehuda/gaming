@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FormattedDate } from 'react-intl';
+import { FormattedDate, FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { IComment } from '../../../entities/comment';
@@ -43,7 +43,11 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                             {comment.creator?.firstName}]: {comment.description}
                         </p>
                         <p>
-                            Date:{' '}
+                            <FormattedMessage
+                                id='date'
+                                defaultMessage='Date:'
+                            />
+                            {' '}
                             <FormattedDate
                                 value={comment.createdDate}
                                 dateStyle='long'
@@ -71,7 +75,10 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                 </>
             ) : (
                 <div className='comments__no-access'>
-                    Please login to let a comment
+                    <FormattedMessage
+                        id='pleaseLoginComment'
+                        defaultMessage='Please login to let a comment'
+                    />
                 </div>
             )}
         </section>

@@ -16,5 +16,10 @@
     "placeHolderFirstName": "Пожалуйста, введите имя",
     "placeHolderLastName": "Пожалуйста, введите фамилию",
     "placeHolderSelectImg": "Выберите изображение профиля",
-    "valueSubmit": "Отправить"
+    "valueSubmit": "Отправить",
+    "price": "Цена: ",
+    "rate": "Оценить: ",
+    "comment": "Комментарии: ",
+    "date": "Дата: ",
+    "pleaseLoginComment": "Пожалуйста, войдите, чтобы оставить комментарий"
 }
