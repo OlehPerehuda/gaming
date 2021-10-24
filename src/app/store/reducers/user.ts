@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT, REGISTER_USER } from '../actions/user';
+import { LOGIN_USER, LOGOUT, REGISTER_USER, UPDATE_USER } from '../actions/user';
 
 export interface IUserState {
     email: string;
@@ -10,6 +10,7 @@ const initState = {
     email: '',
     firstName: '',
     lastName: '',
+    image: '',
 };
 
 export const userReducer = (state: IUserState = initState, action: any) => {
@@ -26,6 +27,11 @@ export const userReducer = (state: IUserState = initState, action: any) => {
             };
         case LOGOUT:
             return { ...initState };
+        case UPDATE_USER:
+            return {
+                ...state,
+                ...action.payload,
+            };
         default: {
             return { ...state };
         }

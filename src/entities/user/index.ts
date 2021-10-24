@@ -9,7 +9,7 @@ export class UserMainInfo {
         public email: string,
         public password: string,
         public image: string
-    ) {}
+    ) { }
 }
 
 /** exposes User domain entity */
@@ -20,13 +20,11 @@ export class User {
         public likes: Like,
         public comments: Comment[],
         public favourites: IGame[]
-    ) {}
+    ) { }
 }
 
 export interface IUser {
     firstName: string,
     lastName: string,
-    email: string,
-    password: string,
     image: string,
 }

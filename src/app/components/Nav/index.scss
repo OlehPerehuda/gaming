@@ -70,6 +70,10 @@
             height: 40px;
             background: gray;
             border-radius: 50%;
+            cursor: pointer;
+            &__profile {
+                height: 100%;
+            }
         }
         &__user-controls {
             padding: 10px;
