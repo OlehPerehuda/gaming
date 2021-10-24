@@ -3,20 +3,10 @@ import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     getAuth,
-    updateProfile,
 } from 'firebase/auth';
-import {
-    collection,
-    addDoc,
-    getDoc,
-    setDoc,
-    doc,
-    serverTimestamp,
-    updateDoc,
-} from 'firebase/firestore';
+import { getDoc, setDoc, doc, updateDoc } from 'firebase/firestore';
 import { db, firebaseAuth } from '../../../firebase';
 import { IUser, UserMainInfo } from '../../../entities/user';
-import { getStorage, ref, uploadString } from 'firebase/storage';
 
 export const REGISTER_USER: string = 'REGISTER_USER';
 export const LOGIN_USER: string = 'LOGIN_USER';
