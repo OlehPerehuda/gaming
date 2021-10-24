@@ -1,4 +1,4 @@
-import { Comment } from '../comment';
+import { IComment } from '../comment';
 import { IGame } from '../game';
 import { Like } from '../like';
 
@@ -9,7 +9,7 @@ export class UserMainInfo {
         public email: string,
         public password: string,
         public image: string
-    ) { }
+    ) {}
 }
 
 /** exposes User domain entity */
@@ -18,13 +18,15 @@ export class User {
         public mainInfo: UserMainInfo,
         public id: string,
         public likes: Like,
-        public comments: Comment[],
+        public comments: IComment[],
         public favourites: IGame[]
-    ) { }
+    ) {}
 }
 
 export interface IUser {
-    firstName: string,
-    lastName: string,
-    image: string,
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    image: string;
 }

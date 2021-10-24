@@ -5,7 +5,15 @@ import {
     getAuth,
     updateProfile,
 } from 'firebase/auth';
-import { collection, addDoc, getDoc, setDoc, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
+import {
+    collection,
+    addDoc,
+    getDoc,
+    setDoc,
+    doc,
+    serverTimestamp,
+    updateDoc,
+} from 'firebase/firestore';
 import { db, firebaseAuth } from '../../../firebase';
 import { IUser, UserMainInfo } from '../../../entities/user';
 import { getStorage, ref, uploadString } from 'firebase/storage';
@@ -26,7 +34,9 @@ export const login = (user: { email: string; password: string }) => ({
     payload: user,
 });
 
-export const update = (user: IUser) => ({
+export const update = (
+    user: Pick<IUser, 'firstName' | 'lastName' | 'image'>
+) => ({
     type: UPDATE_USER,
     payload: user,
 });
@@ -81,8 +91,7 @@ export const getUserInfo = (id?: string) =>
             }
             const docSnap = await getDoc(doc(db, 'user', id));
             if (docSnap.exists()) {
-                console.log('Document data:', docSnap.data());
-                dispatch(login(docSnap.data() as any));
+                dispatch(login({ ...(docSnap.data() as any), id }));
             } else {
                 // doc.data() will be undefined in this case
                 console.log('No such document!');
@@ -104,12 +113,12 @@ export const loginUser = (user: { email: string; password: string }) =>
             const docSnap = await getDoc(doc(db, 'user', auth.currentUser.uid));
             console.log(docSnap);
             if (docSnap.exists()) {
-                console.log('Document data:', docSnap.data());
+                return;
             } else {
                 // doc.data() will be undefined in this case
                 console.log('No such document!');
             }
-            dispatch(login(user));
+            dispatch(login({ ...docSnap.data, ...user }));
             location.pathname = '/';
         } catch (error) {
             console.log(error);
@@ -126,26 +135,24 @@ export const logoutUser = () =>
         }
     };
 
-export const updateUser = (user: {
-    firstName: string,
-    lastName: string,
-    image: string,
-}) => async function (dispatch: Dispatch) {
-    try {
-        if (!auth.currentUser) {
-            return;
-        };
-        const docRef = doc(db, 'user', auth.currentUser.uid);
+export const updateUser = (
+    user: Pick<IUser, 'firstName' | 'lastName' | 'image'>
+) =>
+    async function (dispatch: Dispatch) {
+        try {
+            if (!auth.currentUser) {
+                return;
+            }
+            const docRef = doc(db, 'user', auth.currentUser.uid);
 
-        await updateDoc(docRef, {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            image: user.image,
-        });
+            await updateDoc(docRef, {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                image: user.image,
+            });
 
-        dispatch(update(user));
-
-    } catch (error) {
-        console.log(error);
-    }
-}
+            dispatch(update(user));
+        } catch (error) {
+            console.log(error);
+        }
+    };

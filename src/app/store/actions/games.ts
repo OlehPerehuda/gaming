@@ -24,6 +24,7 @@ import {
 import { db, firebaseApp } from '../../../firebase';
 import { IGame } from '../../../entities/game';
 import { ERoutes } from '../../../routes';
+import { getCommentsByIds } from './comments';
 
 export const LOAD_GAMES: string = 'LOAD_GAMES';
 export const LOAD_SELECTED_GAME: string = 'LOAD_SELECTED_GAME';
@@ -103,11 +104,11 @@ export const createGame = (game: Omit<IGame, 'id'>) =>
 export const loadGameByID = (id: string) =>
     async function (dispatch: Dispatch) {
         try {
-            const docSnap = await getDoc(
-                doc(db, 'game', '2RbMIe4iSpd5YKDq6TYu')
-            );
+            const docSnap = await getDoc(doc(db, 'game', id));
             if (docSnap.exists()) {
-                dispatch(loadGameAcation(docSnap.data() as IGame));
+                const game = docSnap.data() as IGame;
+                dispatch(getCommentsByIds(game.comments) as any);
+                dispatch(loadGameAcation(game));
             } else {
                 // doc.data() will be undefined in this case
                 console.log('No such document!');
