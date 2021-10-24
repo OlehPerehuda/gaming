@@ -1,4 +1,4 @@
-import React, { Fragment, lazy } from 'react';
+import { lazy } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Header } from '../app/components/Header';
 import { AuthLayout } from '../app/components/AuthLayout';

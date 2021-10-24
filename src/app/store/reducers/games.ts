@@ -1,6 +1,6 @@
-import { LOAD_GAMES, LOAD_SELECTED_GAME } from '../actions/games';
+import { DELETE_GAME, LOAD_GAMES, LOAD_SELECTED_GAME } from '../actions/games';
 
-interface IGame {}
+interface IGame { }
 
 const initState = {
     data: [],
@@ -25,7 +25,6 @@ export const gamesReducer = (
                 ...state,
                 selectedGame: action.payload,
             };
-
         default: {
             return { ...initState, ...state };
         }

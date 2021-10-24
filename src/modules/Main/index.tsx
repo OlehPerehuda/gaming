@@ -11,6 +11,7 @@ const Main = () => {
     const [perPage, setPerPage] = useState(3);
 
     const gamesList = useSelector((state: any) => state.games.data);
+
     const [search, setSearch] = useState('');
     const [searchField, setSearchField] = useState('name');
 
@@ -55,7 +56,7 @@ const Main = () => {
                             className="games__language"
                             value={searchField}
                             onChange={handleChangeString(setSearchField)}
-                            >
+                        >
                             <option value='name'>Name</option>
                             <option value='description'>Description</option>
                         </select>
@@ -66,14 +67,14 @@ const Main = () => {
                         <div
                             className="games__confirm-search" onClick={handleSearch}
                         >
-                                Search
-                        </div>
+                            Search
                         </div>
                     </div>
+                </div>
                 <div className='games__cards-area'>
                     {gamesList.map((item: IGame, index: any) => (
-                        <Card key={index} card={item}/>
-                        ))}
+                        <Card key={index} card={item} />
+                    ))}
                 </div>
             </div>
         </section>

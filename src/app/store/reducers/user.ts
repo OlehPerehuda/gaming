@@ -11,6 +11,7 @@ const initState = {
     firstName: '',
     lastName: '',
     image: '',
+    isAdmin: false,
 };
 
 export const userReducer = (state: IUserState = initState, action: any) => {

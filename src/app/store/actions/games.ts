@@ -9,6 +9,7 @@ import {
     addDoc,
     doc,
     getDoc,
+    deleteDoc,
     Firestore,
     getDocs,
     setDoc,
@@ -27,6 +28,7 @@ import { ERoutes } from '../../../routes';
 export const LOAD_GAMES: string = 'LOAD_GAMES';
 export const LOAD_SELECTED_GAME: string = 'LOAD_SELECTED_GAME';
 export const CREATE_GAME: string = 'CREATE_GAME';
+export const DELETE_GAME: string = 'DELETE_GAME';
 
 export const loadGamesAcation = (games: IGame[]) => ({
     type: LOAD_GAMES,
@@ -114,3 +116,12 @@ export const loadGameByID = (id: string) =>
             console.log(error);
         }
     };
+
+export const deleteGameByID = (id: string) =>
+    async function (dispatch: Dispatch) {
+        try {
+            await deleteDoc(doc(db, "game", id));
+        } catch (error) {
+            console.log(error);
+        }
+    }
