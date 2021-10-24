@@ -1,21 +1,22 @@
-import { IUser } from "../../../entities/user";
-import { DELETE_USER } from "../actions/users";
+import { IUser } from '../../../entities/user';
+import { GET_USERS } from '../actions/users';
 
-const initialState = [
-  {
-    firstName: "Oleg",
-    lastName: "T-150",
-    email: "oleh@gmail.com",
-    password: "123456",
-    image: "",
-  },
-];
+const initState = {
+    data: [],
+    loading: true,
+};
 
-export const usersReducer = (state: IUser[] = initialState, action: any) => {
-  switch (action.type) {
-    case DELETE_USER:
-      return state.filter((user) => user.email !== action.email);
-    default:
-      return [...state];
-  }
+export const usersReducer = (state: { users: IUser }, action: any) => {
+    switch (action.type) {
+        case GET_USERS:
+            return {
+                ...state,
+                data: action.payload,
+            }
+        default:
+            return {
+                ...initState,
+                ...state
+            };
+    }
 };
