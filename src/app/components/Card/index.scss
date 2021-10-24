@@ -3,14 +3,17 @@
 .card {
     background: white;
     width: 400px;
+    height: 500px;
     box-shadow:  0 70px 60px -40px rgb(0 0 0 / 10%);
     border-radius: 40px;
     overflow: hidden;
     &__image {
-        width: 100%;
+        height: 200px;
+        background-size: cover;
     }
     &__title,
     &__description {
+        margin-top: 40px;
         text-align: center;
     }
     &__stats {
@@ -26,5 +29,8 @@
         &__title {
             font-weight: bold;
         }
+    }
+    &__date {
+        text-align: center;
     }
 }

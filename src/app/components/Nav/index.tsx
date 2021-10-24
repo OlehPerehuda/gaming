@@ -15,6 +15,7 @@ export const Nav = () => {
         (state: RootState) => state.user
     );
     const [dropdownMenu, setDropdownMenu] = useState<boolean>(false);
+    const [userControls, handleControls] = useState<boolean>(false);
 
     const handleLogout = () => {
         dispatch(logoutUser());
@@ -22,7 +23,11 @@ export const Nav = () => {
 
     return (
         <nav className='nav'>
-            <img className='nav__logo' src={logo} alt='logo' />
+            <Link to="/">
+                <img className='nav__logo' src={logo} alt='logo' />
+            </Link>
+            <div className="nav__wrapper">
+
             <div className='nav__controls'>
                 <ul className='nav__list'>
                     {SocialList.map((item, index) => (
@@ -32,34 +37,17 @@ export const Nav = () => {
                                     className='nav__icon'
                                     src={item.icon}
                                     alt=''
-                                />
+                                    />
                             </a>
                         </li>
                     ))}
                 </ul>
-                {!email ? (
-                    <>
-                        <Link to={ERoutes.login} className='nav__button'>
-                            Login
-                        </Link>
-                        <Link to={ERoutes.registration} className='nav__button'>
-                            Register
-                        </Link>
-                    </>
-                ) : (
-                    <div>
-                        <span>
-                            Welcome, {lastName} {firstName}
-                        </span>
-                        <div onClick={handleLogout}>Logout</div>
-                    </div>
-                )}
             </div>
             <div
                 className={`nav__controls-mobile${
                     dropdownMenu ? '-active' : ''
                 }`}
-            >
+                >
                 <ul className='nav__list-mobile'>
                     {SocialList.map((item, index) => (
                         <li className='nav__item' key={index}>
@@ -68,7 +56,7 @@ export const Nav = () => {
                                     className='nav__icon'
                                     src={item.icon}
                                     alt=''
-                                />
+                                    />
                             </a>
                         </li>
                     ))}
@@ -80,12 +68,41 @@ export const Nav = () => {
                     Register
                 </a>
             </div>
+            {!email ? (
+                <>
+                    <Link to={ERoutes.login} className='nav__button'>
+                        Login
+                    </Link>
+                    <Link to={ERoutes.registration} className='nav__button'>
+                        Register
+                    </Link>
+                </>
+            ) : (
+                <div className="nav__status">
+                    <span className="nav__status__name">
+                        Welcome, {firstName}
+                    </span>
+                    <div className="nav__status__user" onClick={() => handleControls(prev => !prev)}>
+                        {userControls &&
+                            <div className="nav__status__user-controls">
+                                <div className="nav__status__logout" onClick={handleLogout}>Logout</div>
+                                <Link className="nav__status__logout" to="/edit">Edit profile</Link>
+                            </div>
+                        }
+                    </div>
+                </div>
+            )}
             <div
                 className='nav__dropdown'
                 onClick={() => setDropdownMenu(!dropdownMenu)}
-            >
+                >
                 {dropdownMenu ? <Cross /> : <DropdownNavBar />}
             </div>
+            <select>
+                <option value="">ENG</option>
+                <option value="">RU</option>
+            </select>
+                </div>
         </nav>
     );
 };
