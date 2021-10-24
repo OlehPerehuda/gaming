@@ -71,9 +71,7 @@ export const loadGames = ({
 export const createGame = (game: IGame) =>
     async function (dispatch: Dispatch) {
         try {
-            const querySnapshot = await addDoc(collection(db, 'game'), {
-                game
-            });
+            const querySnapshot = await addDoc(collection(db, 'game'), game);
             console.log(querySnapshot);
 
             // dispatch(createGame(querySnapshot));
