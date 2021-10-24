@@ -1,8 +1,11 @@
+@import '/src/index.scss';
+
 .edit {
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    @extend %wrapper;
     &__title {
         font-size: 36px;
     }
