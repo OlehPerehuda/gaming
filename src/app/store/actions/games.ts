@@ -25,14 +25,19 @@ import { IGame } from '../../../entities/game';
 import { ERoutes } from '../../../routes';
 
 export const LOAD_GAMES: string = 'LOAD_GAMES';
+export const LOAD_SELECTED_GAME: string = 'LOAD_SELECTED_GAME';
 export const CREATE_GAME: string = 'CREATE_GAME';
 
 export const loadGamesAcation = (games: IGame[]) => ({
     type: LOAD_GAMES,
     payload: games,
 });
-export const creategameAcation = (game: IGame) => ({
+export const createGameAcation = (game: Omit<IGame, 'id'>) => ({
     type: CREATE_GAME,
+    payload: game,
+});
+export const loadGameAcation = (game: Omit<IGame, 'id'>) => ({
+    type: LOAD_SELECTED_GAME,
     payload: game,
 });
 
@@ -67,7 +72,7 @@ export const loadGames = ({
             } else {
                 const data: IGame[] = [];
                 querySnapshot.forEach((doc) => {
-                    data.push(doc.data() as IGame);
+                    data.push({ ...doc.data(), id: doc.id } as IGame);
                 });
                 dispatch(loadGamesAcation(data));
             }
@@ -76,8 +81,8 @@ export const loadGames = ({
         }
     };
 
-/** thunk that implements user login */
-export const createGame = (game: IGame) =>
+/** thunk that implements create game */
+export const createGame = (game: Omit<IGame, 'id'>) =>
     async function (dispatch: Dispatch) {
         if (!auth.currentUser) {
             return;
@@ -85,8 +90,26 @@ export const createGame = (game: IGame) =>
 
         try {
             await setDoc(doc(db, 'game', auth.currentUser.uid), game);
-            await dispatch(creategameAcation(game));
+            await dispatch(createGameAcation(game));
             location.pathname = ERoutes.home;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+/** thunk that implements load game */
+export const loadGameByID = (id: string) =>
+    async function (dispatch: Dispatch) {
+        try {
+            const docSnap = await getDoc(
+                doc(db, 'game', '2RbMIe4iSpd5YKDq6TYu')
+            );
+            if (docSnap.exists()) {
+                dispatch(loadGameAcation(docSnap.data() as IGame));
+            } else {
+                // doc.data() will be undefined in this case
+                console.log('No such document!');
+            }
         } catch (error) {
             console.log(error);
         }
