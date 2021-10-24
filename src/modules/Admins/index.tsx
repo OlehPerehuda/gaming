@@ -3,7 +3,7 @@ const Admins: React.FC = () => {
         <>
             <h1>Admins</h1>
         </>
-    )
+    );
 };
 
 export default Admins;

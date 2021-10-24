@@ -1,15 +1,17 @@
 @import '/src/index.scss';
 
 .card {
+    position: relative;
     background: white;
     width: 400px;
     height: 500px;
-    box-shadow:  0 70px 60px -40px rgb(0 0 0 / 10%);
+    box-shadow: 0 70px 60px -40px rgb(0 0 0 / 10%);
     border-radius: 40px;
     overflow: hidden;
     &__image {
         height: 200px;
         background-size: cover;
+        background-position: center;
     }
     &__title,
     &__description {
@@ -32,5 +34,16 @@
     }
     &__date {
         text-align: center;
+    }
+
+    &__close {
+        position: absolute;
+        z-index: 2;
+        top: 5px;
+        right: 15px;
+        cursor: pointer;
+        &__icon {
+            height: 20px;
+        }
     }
 }

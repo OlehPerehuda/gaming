@@ -15,6 +15,17 @@
         background-color: #fff;
         border-radius: 20px;
         padding: 0 10px 10px;
+        position: relative;
+        &__close {
+            position: absolute;
+            z-index: 2;
+            top: 5px;
+            right: 15px;
+            cursor: pointer;
+            &__icon {
+                height: 20px;
+            }
+        }
     }
     &__form {
         padding: 20px;

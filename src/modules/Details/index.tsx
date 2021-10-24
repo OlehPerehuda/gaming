@@ -1,5 +1,5 @@
 /** just for test rigth now */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CardDetails } from '../../app/components/CardDetails/CardDetails';

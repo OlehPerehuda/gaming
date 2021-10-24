@@ -1,14 +1,14 @@
 import { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IntlProvider, FormattedMessage } from 'react-intl';
+import { FormattedMessage, IntlProvider } from 'react-intl';
 import { firebaseAuth } from './firebase';
 import { Routes } from './routes';
 import { getUserInfo } from './app/store/actions/user';
 import { RootState } from './app/store';
-import messages_ru from './lang/ru.json';
+import messagesRu from './lang/ru.json';
 
 const messages = {
-    ru: messages_ru,
+    ru: messagesRu,
     en: {},
 };
 

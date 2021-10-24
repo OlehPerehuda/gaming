@@ -1,8 +1,11 @@
+@import '/src/index.scss';
+
 .edit {
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    @extend %wrapper;
     &__title {
         font-size: 36px;
     }
@@ -27,7 +30,8 @@
                 color: #999;
                 & span {
                     display: block;
-                    width: 100%; margin-left: 10px;
+                    width: 100%;
+                    margin-left: 10px;
                     cursor: pointer;
                     text-transform: capitalize;
                     color: white;

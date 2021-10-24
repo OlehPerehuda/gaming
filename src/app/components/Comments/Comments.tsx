@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { FormattedDate } from 'react-intl';
+import { useEffect, useState } from 'react';
+import { FormattedDate, FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { IComment } from '../../../entities/comment';
 import { IGame } from '../../../entities/game';
 import { IUser } from '../../../entities/user';
 import { RootState } from '../../store';
-import { addComment } from '../../store/actions/comments';
+import { addComment, deleteCommentByID } from '../../store/actions/comments';
+
+import closeIcon from '../../static/images/main/close.png';
+
 import './styles.scss';
 
 export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
@@ -14,19 +17,25 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     const { id } = useParams<{ id: string }>();
     const [description, setDescription] = useState('');
     const user = useSelector((state: RootState) => state.user);
+    const { isAdmin } = useSelector((state: RootState) => state.user);
     const { comments }: { comments: IComment<IUser>[] } = useSelector(
         (state: RootState) => state.comments
     );
+
+    const deleteGame = (_commentID:string) => () => {
+        dispatch(deleteCommentByID({ id: _commentID, gameId: id }));
+    };
+
     const handleSubmitComment = () => {
         dispatch(
             addComment({
                 gameId: id,
-                prevComments: gameDetails.comments,
+                prevComments: gameDetails.comments || [],
                 description,
                 creatorID: user.id,
                 likes: [],
                 createdDate: new Date().getDate(),
-            })
+            }),
         );
     };
 
@@ -36,14 +45,25 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     return (
         <section className='details__comments comments'>
             <div className='comments__list'>
-                {comments.map((comment) => (
+                {comments.map((comment) =>
                     <div className='comments__item'>
+                        {isAdmin && <div className="comments__item__close">
+                            <img
+                                className="comments__item__close__icon"
+                                src={closeIcon}
+                                onClick={deleteGame(comment.id  as string)}
+                            />
+                        </div>}
                         <p>
-                            [{comment.creator?.lastName}{' '}
-                            {comment.creator?.firstName}]: {comment.description}
+                            [{comment?.creator?.lastName}{' '}
+                            {comment?.creator?.firstName}]: {comment.description}
                         </p>
                         <p>
-                            Date:{' '}
+                            <FormattedMessage
+                                id='date'
+                                defaultMessage='Date:'
+                            />
+                            {' '}
                             <FormattedDate
                                 value={comment.createdDate}
                                 dateStyle='long'
@@ -51,9 +71,9 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                             />
                         </p>
                     </div>
-                ))}
+                )}
             </div>
-            {user.id ? (
+            {user.id ?
                 <>
                     <textarea
                         className='comments__textarea'
@@ -69,11 +89,14 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                         Left comment
                     </div>
                 </>
-            ) : (
+            :
                 <div className='comments__no-access'>
-                    Please login to let a comment
+                    <FormattedMessage
+                        id='pleaseLoginComment'
+                        defaultMessage='Please login to let a comment'
+                    />
                 </div>
-            )}
+            }
         </section>
     );
 };

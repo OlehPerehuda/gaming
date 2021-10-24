@@ -1,10 +1,20 @@
 import { Dispatch } from 'redux';
 import {
-    signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     getAuth,
+    signInWithEmailAndPassword,
+    updateProfile,
 } from 'firebase/auth';
-import { getDoc, setDoc, doc, updateDoc } from 'firebase/firestore';
+import {
+    addDoc,
+    collection,
+    doc,
+    getDoc,
+    serverTimestamp,
+    setDoc,
+    updateDoc,
+} from 'firebase/firestore';
+import { getStorage, ref, uploadString } from 'firebase/storage';
 import { db, firebaseAuth } from '../../../firebase';
 import { IUser, UserMainInfo } from '../../../entities/user';
 
@@ -43,7 +53,7 @@ export const logout = () => ({
 const auth = getAuth();
 /** thunk that implements user registration */
 export const registerUser = (user: UserMainInfo) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
             await createUserWithEmailAndPassword(
                 auth,
@@ -74,14 +84,14 @@ export const registerUser = (user: UserMainInfo) =>
     };
 
 export const getUserInfo = (id?: string) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
             if (!id) {
                 return;
             }
             const docSnap = await getDoc(doc(db, 'user', id));
             if (docSnap.exists()) {
-                dispatch(login({ ...(docSnap.data() as any), id }));
+                dispatch(login({ ...docSnap.data() as any, id }));
             } else {
                 // doc.data() will be undefined in this case
                 console.log('No such document!');
@@ -92,7 +102,7 @@ export const getUserInfo = (id?: string) =>
     };
 
 export const loginUser = (user: { email: string; password: string }) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
             await signInWithEmailAndPassword(auth, user.email, user.password);
             if (!auth.currentUser) {
@@ -104,10 +114,10 @@ export const loginUser = (user: { email: string; password: string }) =>
             console.log(docSnap);
             if (docSnap.exists()) {
                 return;
-            } else {
+            }
                 // doc.data() will be undefined in this case
                 console.log('No such document!');
-            }
+
             dispatch(login({ ...docSnap.data, ...user }));
             location.pathname = '/';
         } catch (error) {
@@ -116,7 +126,7 @@ export const loginUser = (user: { email: string; password: string }) =>
     };
 
 export const logoutUser = () =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
             await firebaseAuth.signOut();
             dispatch(logout());
@@ -128,7 +138,7 @@ export const logoutUser = () =>
 export const updateUser = (
     user: Pick<IUser, 'firstName' | 'lastName' | 'image'>
 ) =>
-    async function (dispatch: Dispatch) {
+    async function(dispatch: Dispatch) {
         try {
             if (!auth.currentUser) {
                 return;
