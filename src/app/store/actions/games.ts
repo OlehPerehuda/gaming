@@ -11,6 +11,7 @@ import {
     getDoc,
     Firestore,
     getDocs,
+    setDoc,
     query,
     where,
     FieldPath,
@@ -20,6 +21,7 @@ import {
 } from 'firebase/firestore';
 import { db, firebaseApp } from '../../../firebase';
 import { IGame } from '../../../entities/game';
+import { ERoutes } from '../../../routes';
 
 export const LOAD_GAMES: string = 'LOAD_GAMES';
 export const CREATE_GAME: string = 'CREATE_GAME';
@@ -70,11 +72,15 @@ export const loadGames = ({
 /** thunk that implements user login */
 export const createGame = (game: IGame) =>
     async function (dispatch: Dispatch) {
-        try {
-            const querySnapshot = await addDoc(collection(db, 'game'), game);
-            console.log(querySnapshot);
 
-            // dispatch(createGame(querySnapshot));
+        if (!auth.currentUser) {
+            return;
+        };
+
+        try {
+            await setDoc(doc(db, 'game', auth.currentUser.uid), game);
+            await dispatch(creategameAcation(game));
+            location.pathname = ERoutes.home;
         } catch (error) {
             console.log(error);
         }
