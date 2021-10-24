@@ -6,7 +6,6 @@ import './index.scss';
 
 export const Card: React.FC<{card: IGame}> = ({card}) => {
 
-    console.log(card)
     return (
         <div className='card'>
             <Link to={`deails/id`}>
