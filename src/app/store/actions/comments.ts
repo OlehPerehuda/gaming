@@ -45,8 +45,7 @@ export const getCommentsByIds = (ids: number[]) =>
         if (!commentSnap.data()) {
           return;
         }
-        //@ts-ignore
-        const comment: IComment = commentSnap.data();
+        const comment = commentSnap.data() as IComment;
         const userSnap = await getDoc(doc(db, "user", comment.creatorID));
         return { ...comment, id, creator: userSnap.data() };
       });
