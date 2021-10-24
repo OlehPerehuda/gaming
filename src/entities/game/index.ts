@@ -5,6 +5,7 @@ import { SocialsMedia } from '../../types/socials';
 
 /** exposes Game domain entity */
 export interface IGame {
+    id: string;
     name: string;
     hashtages?: string[];
     description: string;

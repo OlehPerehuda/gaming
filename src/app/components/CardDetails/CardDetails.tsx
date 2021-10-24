@@ -2,28 +2,34 @@ import React, { FC } from 'react';
 import game from '../../static/images/main/game.png';
 import commentImg from '../../static/images/main/comment.png';
 import './index.scss';
+import { IGame } from '../../../entities/game';
 
-export const CardDetails: FC = () => {
+export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     return (
-        <section className="details__description description">
-            <img src={game} alt="" className="description__img" />
-            <div className="description__inner">
-                <div className="description__desc-inner">
-                    <h3 className="description__name">WoT</h3>
-                    <div className="description__desc">
-                        World of Tanks is a video game, a client-side massive multiplayer
-                        real-time online game in the genre of an arcade tank simulator
-                        in the historic setting of World War II, developed by the
-                        Belarusian studio Wargaming.net. The developers position the
-                        game as an MMO-action game with elements of role-playing game,
-                        shooter and strategy.
+        <section className='details__description description'>
+            <img
+                src={gameDetails.picture}
+                alt='game image'
+                className='description__img'
+            />
+            <div className='description__inner'>
+                <div className='description__desc-inner'>
+                    <h3 className='description__name'>{gameDetails.name}</h3>
+                    <div className='description__desc'>
+                        {gameDetails.description}
                     </div>
                 </div>
-                <div className="description__box-comments">
-                    <div className="description__rate">Rate: 5 / 10</div>
-                    <div className="description__comments">
-                        <img src={commentImg} alt="" />
-                        Comments: 100
+
+                <div className='description__box-comments'>
+                    <div>
+                        Price: {gameDetails.price} {gameDetails.currency}
+                    </div>
+                    <div className='description__rate'>
+                        Rate: {gameDetails.rated} / 10
+                    </div>
+                    <div className='description__comments'>
+                        <img src={commentImg} alt='' />
+                        Comments: {gameDetails.comments.length}
                     </div>
                 </div>
             </div>
