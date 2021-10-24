@@ -1,20 +1,14 @@
-import { createStore } from 'redux';
 import { Suspense, useEffect } from 'react';
-import { Provider } from 'react-redux';
-import { firebaseAuth } from './firebase';
 import { useDispatch } from 'react-redux';
-
+import { firebaseAuth } from './firebase';
 import { Routes } from './routes';
-
-import { login } from './app/store/actions/user';
-import { store } from './app/store';
-import { IUserState } from './app/store/reducers/user';
+import { getUserInfo } from './app/store/actions/user';
 
 function App() {
     const dispatch = useDispatch();
     useEffect(() => {
         firebaseAuth.onAuthStateChanged((user) => {
-            dispatch(login(user as any));
+            dispatch(getUserInfo(user?.uid));
         });
     }, []);
 
