@@ -1,9 +1,7 @@
-/* eslint-disable arrow-body-style */
 /** just for test rigth now */
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import cs from "classnames";
 import { FormattedMessage, useIntl } from "react-intl";
 import { loginUser } from "../../app/store/actions/user";
 
@@ -14,7 +12,6 @@ import { UserAuthValue } from "../../app/components/common/UserAuthValue";
 import "./index.scss";
 import { FormWrapper } from "../../app/components/FormWrapper";
 import { authValues } from "./consts";
-import { IField } from "./interface";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
