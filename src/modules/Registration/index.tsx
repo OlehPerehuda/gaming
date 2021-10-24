@@ -8,6 +8,7 @@ import { ERoutes } from '../../routes';
 import { UserAuthValue } from '../../app/components/common/UserAuthValue';
 import { registrationFormConfig } from './consts';
 import { FormWrapper } from '../../app/components/FormWrapper';
+
 import './index.scss';
 
 const Login: React.FC = () => {
