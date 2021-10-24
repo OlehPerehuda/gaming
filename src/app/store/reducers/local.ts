@@ -8,7 +8,7 @@ export const localReducer = (state: { lang: string }, action: any) => {
             return { lang: action.payload };
 
         default: {
-            return { ...state };
+            return { ...initState, ...state };
         }
     }
 };
