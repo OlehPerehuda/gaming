@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { IComment } from '../../../entities/comment';
@@ -33,6 +33,9 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
     const handleChangeDescription = (e: any) => {
         setDescription(e.target.value);
     };
+
+    const { formatMessage } = useIntl();
+
     return (
         <section className='details__comments comments'>
             <div className='comments__list'>
@@ -61,7 +64,7 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                 <>
                     <textarea
                         className='comments__textarea'
-                        placeholder='your comment'
+                        placeholder={formatMessage({ id:'textareaComment', defaultMessage:'your comment' })}
                         rows={8}
                         onChange={handleChangeDescription}
                         value={description}
@@ -70,7 +73,10 @@ export const Comments: React.FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                         onClick={handleSubmitComment}
                         className='comments__add'
                     >
-                        Left comment
+                        <FormattedMessage
+                            id='leftComment'
+                            defaultMessage='Left comment'
+                        />
                     </div>
                 </>
             ) : (

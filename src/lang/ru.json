@@ -21,5 +21,17 @@
     "rate": "Оценить: ",
     "comment": "Комментарии: ",
     "date": "Дата: ",
-    "pleaseLoginComment": "Пожалуйста, войдите, чтобы оставить комментарий"
+    "pleaseLoginComment": "Пожалуйста, войдите, чтобы оставить комментарий",
+    "leftComment": "Оставить комментарий",
+    "textareaComment": "Твой комментарий",
+    "editProfile": "Редактировать профиль",
+    "editEmail": "Эл. адрес",
+    "editFirstName": "Имя",
+    "editLastName": "Фамилия",
+    "btnEditProfile": "Редактировать профиль",
+    "welcome": "Добро пожаловать, ",
+    "inputPlaceholderSearch": "Введите для поиска",
+    "search": "Поиск",
+    "elements_page": "Элементы на странице: ",
+    "optionName": "По имени"
 }

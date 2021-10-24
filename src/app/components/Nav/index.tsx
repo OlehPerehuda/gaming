@@ -104,7 +104,11 @@ export const Nav = () => {
                 ) : (
                     <div className="nav__status">
                         <span className="nav__status__name">
-                            Welcome, {firstName}
+                            <FormattedMessage
+                                id='welcome'
+                                defaultMessage='Welcome, '
+                            />
+                            {firstName}
                         </span>
                         <div className="nav__status__user" onClick={() => handleControls(prev => !prev)}>
                             {userControls &&

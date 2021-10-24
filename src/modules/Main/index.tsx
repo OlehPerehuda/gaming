@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Card } from '../../app/components/Card';
 import { loadGames } from '../../app/store/actions/games';
@@ -9,10 +11,10 @@ const Main = () => {
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const [perPage, setPerPage] = useState(3);
-
+    const { formatMessage } = useIntl();
     const gamesList = useSelector((state: any) => state.games.data);
     const [search, setSearch] = useState('');
-    const [searchField, setSearchField] = useState('name');
+    const [searchField, setSearchField] = useState('Name');
 
     const handleChangeString = (handler: (v: string) => void) => (e: any) => {
         handler(e.target.value);
@@ -40,7 +42,12 @@ const Main = () => {
                             <div className="games__page__value">0</div>
                             <div className="games__page__arrow">&#8250;</div>
                         </div>
-                        <span>Elements on page: </span>
+                        <span>
+                            <FormattedMessage
+                                id='elements_page'
+                                defaultMessage='Elements on page:'
+                            />
+                        </span>
                         <select
                             className="games__count"
                             value={perPage}
@@ -56,17 +63,24 @@ const Main = () => {
                             value={searchField}
                             onChange={handleChangeString(setSearchField)}
                             >
-                            <option value='name'>Name</option>
-                            <option value='description'>Description</option>
+                            <option value='name'>
+                                Name
+                            </option>
+                            <option value='description'>
+                                Description
+                            </option>
                         </select>
                         <input
-                            placeholder="Type to search"
+                            placeholder={formatMessage({ id:'inputPlaceholderSearch', defaultMessage:'Type to search' })}
                             className="games__search"
                             value={search} onChange={handleChangeString(setSearch)} />
                         <div
                             className="games__confirm-search" onClick={handleSearch}
                         >
-                                Search
+                            <FormattedMessage
+                                id='search'
+                                defaultMessage='Search'
+                            />
                         </div>
                         </div>
                     </div>

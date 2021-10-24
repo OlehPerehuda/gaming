@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { FormWrapper } from "../../app/components/FormWrapper";
 import { UserAuthValue } from "../../app/components/common/UserAuthValue";
@@ -47,35 +48,50 @@ const Edit: React.FC = () => {
             lastName: form.lastName.value,
         }));
     };
+
+    const { formatMessage } = useIntl();
+
     return (
         <section className="edit">
             <h1 className="edit__title">
-                Edit Your Profile
+                <FormattedMessage
+                    id='editProfile'
+                    defaultMessage='Edit Your Profile'
+                />
             </h1>
             <div className="edit__profile">
                 <div className="edit__profile__information">
                     {!isShowChangeField && <>
                         <div >
-                            Email
+                            <FormattedMessage
+                                id='editEmail'
+                                defaultMessage='Email'
+                            />
                             <span>
                                 {email}
                             </span>
                         </div>
                         <div >
-                            FirstName
+                            <FormattedMessage
+                                id='editFirstName'
+                                defaultMessage='FirstName'
+                            />
                             <span>
                                 {firstName}
                             </span>
                         </div>
                         <div >
-                            LastName
+                            <FormattedMessage
+                                id='editLastName'
+                                defaultMessage='LastName'
+                            />
                             <span>
                                 {lastName}
                             </span>
                         </div>
                         <input
                             className="edit__profile__information__back"
-                            value="Edit profile"
+                            value={formatMessage({ id:'btnEditProfile', defaultMessage: 'Edit profile' })}
                             type='button'
                             onClick={changeProfile}
                         /></>}
