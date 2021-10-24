@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card } from '../../app/components/Card';
 import { loadGames } from '../../app/store/actions/games';
+import { IGame } from '../../entities/game';
 import './index.scss';
 
 const Main = () => {
@@ -16,7 +17,7 @@ const Main = () => {
     return (
         <section className='games'>
             <div className='games__cards-area'>
-                {gamesList.map((item: any, index: any) => (
+                {gamesList.map((item: IGame, index: any) => (
                     <Card key={index} card={item}/>
                 ))}
             </div>

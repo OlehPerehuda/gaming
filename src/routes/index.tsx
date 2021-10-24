@@ -18,6 +18,7 @@ export enum ERoutes {
     login = '/auth/login',
     registration = '/auth/registration',
     create = '/create',
+    edit = '/edit'
 };
 
 const routeConfig = [
