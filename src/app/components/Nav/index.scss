@@ -36,6 +36,12 @@
         z-index: 2;
         display: none;
     }
+    &__language{
+        border-radius: 10px;
+        background-color: white;
+        padding: 15px 20px;
+        border: none;
+    }
     &__button,
     &__button-mobile {
         padding: 15px 20px;
@@ -64,6 +70,10 @@
             height: 40px;
             background: gray;
             border-radius: 50%;
+            cursor: pointer;
+            &__profile {
+                height: 100%;
+            }
         }
         &__user-controls {
             padding: 10px;
