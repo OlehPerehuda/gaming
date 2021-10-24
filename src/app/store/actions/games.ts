@@ -60,9 +60,8 @@ export const loadGames = ({
         try {
             //@ts-ignore
             const cond: QueryConstraint[] = [
-                // orderBy('createdDate'),
-                !!search ? where('name', '>=', search) : false,
-                !!search ? where('name', '<=', search + '\uf8ff') : false,
+                !!search ? where(searchField, '>=', search) : false,
+                !!search ? where(searchField, '<=', search + '\uf8ff') : false,
                 limit(perPage),
             ].filter(Boolean);
             const querySnapshot = await getDocs(
