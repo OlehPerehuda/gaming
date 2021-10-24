@@ -4,14 +4,13 @@ import { IGame } from '../../../entities/game';
 
 import './index.scss';
 
-export const Card: React.FC<{card: IGame}> = ({card}) => {
-
+export const Card: React.FC<{card: IGame}> = ({ card }) => {
     return (
         <div className='card'>
-            <Link to={`details/id`}>
+            <Link to={'details/id'}>
                 <div
                     className="card__image"
-                    style={{backgroundImage: `url("${card.picture}")`}}
+                    style={{ backgroundImage: `url("${card.picture}")` }}
                     />
                 <div className="card__text-area">
                     <h4 className="card__title">{card.name}</h4>

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cs from 'classnames';
+import { FormattedMessage } from 'react-intl';
 import { loginUser } from '../../app/store/actions/user';
 
 import { ERoutes } from '../../routes';
@@ -11,9 +12,9 @@ import { ERoutes } from '../../routes';
 import { UserAuthValue } from '../../app/components/common/UserAuthValue';
 
 import './index.scss';
+import { FormWrapper } from '../../app/components/FormWrapper';
 import { authValues } from './consts';
 import { IField } from './interface';
-import { FormWrapper } from '../../app/components/FormWrapper';
 
 const Login: React.FC = () => {
     const dispatch = useDispatch();
@@ -50,9 +51,17 @@ const Login: React.FC = () => {
     return (
         <div className='login'>
             <Link className='login__create' to={ERoutes.registration}>
-                + Create new Account
+                <FormattedMessage
+                    id='create_new'
+                    defaultMessage='+ Create new Account'
+                />
             </Link>
-            <h4 className='login__title'>Get in!</h4>
+            <h4 className='login__title'>
+                <FormattedMessage
+                    id='get_in'
+                    defaultMessage='Get in!'
+                />
+            </h4>
             <FormWrapper
                 handleSumbit={handleSumbit}
                 isValidForm={!!form.email.value && !!form.password.value}
