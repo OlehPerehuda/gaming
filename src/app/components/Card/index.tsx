@@ -8,7 +8,7 @@ export const Card: React.FC<{card: IGame}> = ({card}) => {
 
     console.log(card)
     return (
-        <div className="card">
+        <div className='card'>
             <Link to={`deails/id`}>
                 <div
                     className="card__image"
@@ -25,9 +25,11 @@ export const Card: React.FC<{card: IGame}> = ({card}) => {
                         <span className="card__rate__title">Rate: </span>
                         <span className="card__rate__value">{card.rated}</span>
                     </div>
-                    <div className="card__comments">
-                        <span className="card__comments__title">Comments: </span>
-                        <span className="card__comments__value">1000</span>
+                    <div className='card__comments'>
+                        <span className='card__comments__title'>
+                            Comments:{' '}
+                        </span>
+                        <span className='card__comments__value'>1000</span>
                     </div>
                 </div>
                     <p className="card__date">
@@ -35,5 +37,5 @@ export const Card: React.FC<{card: IGame}> = ({card}) => {
                     </p>
             </Link>
         </div>
-    )
-}
+    );
+};

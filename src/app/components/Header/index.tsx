@@ -8,9 +8,9 @@ export const Header = () => (
         <div className='header__wrapper'>
             <Nav />
             <div className='header__text-area'>
-                <h1 className='header__title'>Upcoming IGOs__</h1>
+                <h1 className='header__title'>Best gamers here!</h1>
                 <p className='header__description'>
-                    Full-scale gaming ecosystem for IGOs and NFT pre-sales.
+                    Best ecosystem to review and share game expirience.
                 </p>
             </div>
         </div>
