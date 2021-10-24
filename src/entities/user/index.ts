@@ -1,7 +1,6 @@
-import { IComment } from '../comment';
-import { IGame } from '../game';
-import { Like } from '../like';
-
+import { IComment } from "../comment";
+import { IGame } from "../game";
+import { Like } from "../like";
 
 /** main info class */
 export class UserMainInfo {

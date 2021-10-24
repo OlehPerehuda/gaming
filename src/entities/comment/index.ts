@@ -1,10 +1,10 @@
-import { Like } from '../like';
+import { Like } from "../like";
 
 export interface IComment<T = {}> {
-    description: string;
-    creatorID: string;
-    likes: Like[];
-    createdDate: number;
-    creator?: T;
-    id?: string,
+  description: string;
+  creatorID: string;
+  likes: Like[];
+  createdDate: number;
+  creator?: T;
+  id?: string;
 }

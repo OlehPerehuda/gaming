@@ -1,32 +1,32 @@
-import { DELETE_GAME, LOAD_GAMES, LOAD_SELECTED_GAME } from '../actions/games';
+import { DELETE_GAME, LOAD_GAMES, LOAD_SELECTED_GAME } from "../actions/games";
 
-interface IGame { }
+interface IGame {}
 
 const initState = {
-    data: [],
-    selectedGame: {},
-    loading: true,
+  data: [],
+  selectedGame: {},
+  loading: true,
 };
 
 export const gamesReducer = (
-    state: { games: IGame[] | IGame },
-    action: any
+  state: { games: IGame[] | IGame },
+  action: any
 ) => {
-    switch (action.type) {
-        case LOAD_GAMES:
-            return {
-                ...state,
-                data: action.payload,
-                loading: false,
-            };
+  switch (action.type) {
+    case LOAD_GAMES:
+      return {
+        ...state,
+        data: action.payload,
+        loading: false,
+      };
 
-        case LOAD_SELECTED_GAME:
-            return {
-                ...state,
-                selectedGame: action.payload,
-            };
-        default: {
-            return { ...initState, ...state };
-        }
+    case LOAD_SELECTED_GAME:
+      return {
+        ...state,
+        selectedGame: action.payload,
+      };
+    default: {
+      return { ...initState, ...state };
     }
+  }
 };

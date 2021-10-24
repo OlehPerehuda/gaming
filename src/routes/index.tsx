@@ -1,9 +1,8 @@
-import { lazy } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { Header } from '../app/components/Header';
-import { AuthLayout } from '../app/components/AuthLayout';
+import { lazy } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import { Header } from "../app/components/Header";
+import { AuthLayout } from "../app/components/AuthLayout";
 
-/** TODO: imports components with lazy loading */
 const Main = lazy(() => import('../modules/Main'));
 const Login = lazy(() => import('../modules/Login'));
 const Registration = lazy(() => import('../modules/Registration'));

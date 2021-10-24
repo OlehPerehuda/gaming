@@ -7,7 +7,7 @@ import { deleteUserById, getUsers } from '../../app/store/actions/users';
 
 import closeIcon from '../../app/static/images/main/close.png';
 
-import './index.scss';
+import "./index.scss";
 
 export const Users = () => {
     const { data }: { data: IUser[] } = useSelector((state: RootState) => state.users);
@@ -16,7 +16,6 @@ export const Users = () => {
     useEffect(() => {
         dispatch(getUsers());
     }, []);
-    console.log(data)
     const deleteUser = (id: string) => () => {
         dispatch(deleteUserById(id));
     };

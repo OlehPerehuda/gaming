@@ -1,30 +1,27 @@
-import cs from 'classnames';
-import { FormEventHandler } from 'react';
-import { useIntl } from 'react-intl';
+import cs from "classnames";
+import { FormEventHandler } from "react";
+import { useIntl } from "react-intl";
 
-import './styles.scss';
+import "./styles.scss";
 
 export const FormWrapper: React.FC<{
-    handleSumbit: () => void;
-    isValidForm: boolean;
+  handleSumbit: () => void;
+  isValidForm: boolean;
 }> = ({ children, handleSumbit, isValidForm }) => {
-    const onSubmit = (e: any) => {
-        e.preventDefault();
-        handleSumbit();
-    };
-    const { formatMessage } = useIntl();
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    handleSumbit();
+  };
+  const { formatMessage } = useIntl();
 
-    return (
-        <form className='login__form' onSubmit={onSubmit}>
-            {children}
-            <input
-                className={cs(
-                    'login__submit',
-                    isValidForm && 'login__submit-valid'
-                )}
-                value={formatMessage({ id:'valueSubmit', defaultMessage:'submit' })}
-                type='submit'
-            />
-        </form>
-    );
+  return (
+    <form className="login__form" onSubmit={onSubmit}>
+      {children}
+      <input
+        className={cs("login__submit", isValidForm && "login__submit-valid")}
+        value={formatMessage({ id: "valueSubmit", defaultMessage: "submit" })}
+        type="submit"
+      />
+    </form>
+  );
 };
