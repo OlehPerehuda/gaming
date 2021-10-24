@@ -6,4 +6,5 @@ export interface IComment<T = {}> {
     likes: Like[];
     createdDate: number;
     creator?: T;
+    id?: string,
 }

@@ -5,6 +5,7 @@ import {
     getDoc,
     setDoc,
     updateDoc,
+    deleteDoc,
 } from '@firebase/firestore';
 import { Dispatch } from 'redux';
 import { IComment } from '../../../entities/comment';
@@ -41,22 +42,33 @@ export const getCommentsByIds = (ids: number[]) =>
     async function (dispatch: Dispatch) {
         try {
             const loaders = ids.map(async (id: number) => {
-                const docSnap = await getDoc(doc(db, 'comments', id as any));
-                if (!docSnap.data()) {
+                const commentSnap = await getDoc(doc(db, 'comments', id as any));
+                if (!commentSnap.data()) {
                     return;
                 }
                 //@ts-ignore
-                const comment: IComment = docSnap.data();
+                const comment: IComment = commentSnap.data();
                 const userSnap = await getDoc(
                     doc(db, 'user', comment.creatorID)
                 );
-                return { ...comment, creator: userSnap.data() };
+                return { ...comment, id, creator: userSnap.data() };
             });
             const comments = await Promise.all(loaders);
-            if (!comments) {
+            const filteredComments: any = comments.filter(Boolean)
+            if (!filteredComments) {
                 return;
             }
-            dispatch(loadCommentsAction(comments as IComment[]));
+            dispatch(loadCommentsAction(filteredComments as IComment[]));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+export const deleteCommentByID = ({ id, gameId }: { id: string, gameId: string }) =>
+    async function (dispatch: Dispatch) {
+        try {
+            await deleteDoc(doc(db, "comments", id));
+            dispatch(loadGameByID(gameId) as any);
         } catch (error) {
             console.log(error);
         }

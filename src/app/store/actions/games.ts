@@ -122,6 +122,12 @@ export const deleteGameByID = (id: string) =>
     async function (dispatch: Dispatch) {
         try {
             await deleteDoc(doc(db, "game", id));
+            dispatch(loadGames({
+                page: 0,
+                perPage: 3,
+                search: '',
+                searchField: '',
+            }) as any);
         } catch (error) {
             console.log(error);
         }

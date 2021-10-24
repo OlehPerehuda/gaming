@@ -3,8 +3,13 @@ import game from '../../static/images/main/game.png';
 import commentImg from '../../static/images/main/comment.png';
 import './index.scss';
 import { IGame } from '../../../entities/game';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { IComment } from '../../../entities/comment';
 
 export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
+    const { comments }: { comments: IComment[] } = useSelector((state: RootState) => state.comments);
+
     return (
         <section className='details__description description'>
             <img
@@ -29,7 +34,7 @@ export const CardDetails: FC<{ gameDetails: IGame }> = ({ gameDetails }) => {
                     </div>
                     <div className='description__comments'>
                         <img src={commentImg} alt='' />
-                        Comments: {gameDetails.comments?.length}
+                        Comments: {comments.length}
                     </div>
                 </div>
             </div>
