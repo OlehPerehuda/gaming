@@ -1,43 +1,31 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../static/images/nav/logo.png';
-import medium from '../../static/images/nav/medium.png';
-import twitter from '../../static/images/nav/twitter.png';
-import telegram from '../../static/images/nav/telegram.png';
-import discord from '../../static/images/nav/discord.png';
 import { Cross, DropdownNavBar } from '../../static/images/nav/svg';
+import { logoutUser } from '../../store/actions/user';
 import { ERoutes } from '../../../routes';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import './index.scss';
+import { SocialList } from './consts';
 
 export const Nav = () => {
-    const { email } = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
+    const { email, firstName, lastName } = useSelector(
+        (state: RootState) => state.user
+    );
     const [dropdownMenu, setDropdownMenu] = useState<boolean>(false);
-    const list = [
-        {
-            icon: telegram,
-            path: '#',
-        },
-        {
-            icon: twitter,
-            path: '#',
-        },
-        {
-            icon: medium,
-            path: '#',
-        },
-        {
-            icon: discord,
-            path: '#',
-        },
-    ];
+
+    const handleLogout = () => {
+        dispatch(logoutUser());
+    };
+
     return (
         <nav className='nav'>
             <img className='nav__logo' src={logo} alt='logo' />
             <div className='nav__controls'>
                 <ul className='nav__list'>
-                    {list.map((item, index) => (
+                    {SocialList.map((item, index) => (
                         <li className='nav__item' key={index}>
                             <a href={item.path} className='nav__link'>
                                 <img
@@ -49,21 +37,31 @@ export const Nav = () => {
                         </li>
                     ))}
                 </ul>
-                {!email ? <>
-                    <Link to={ERoutes.login} className='nav__button'>
-                        Login
-                    </Link>
-                    <Link to={ERoutes.registration} className='nav__button'>
-                        Register
-                    </Link>
-                </> : <div>123</div>}
+                {!email ? (
+                    <>
+                        <Link to={ERoutes.login} className='nav__button'>
+                            Login
+                        </Link>
+                        <Link to={ERoutes.registration} className='nav__button'>
+                            Register
+                        </Link>
+                    </>
+                ) : (
+                    <div>
+                        <span>
+                            Welcome, {lastName} {firstName}
+                        </span>
+                        <div onClick={handleLogout}>Logout</div>
+                    </div>
+                )}
             </div>
             <div
-                className={`nav__controls-mobile${dropdownMenu ? '-active' : ''
-                    }`}
+                className={`nav__controls-mobile${
+                    dropdownMenu ? '-active' : ''
+                }`}
             >
                 <ul className='nav__list-mobile'>
-                    {list.map((item, index) => (
+                    {SocialList.map((item, index) => (
                         <li className='nav__item' key={index}>
                             <a href={item.path} className='nav__link'>
                                 <img

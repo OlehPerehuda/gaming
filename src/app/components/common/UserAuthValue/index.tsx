@@ -1,4 +1,5 @@
 import cs from 'classnames';
+import { getBase64 } from '../../../../utils/file';
 import './styles.scss';
 
 export const UserAuthValue: React.FC<{
@@ -7,15 +8,26 @@ export const UserAuthValue: React.FC<{
     type: string;
     handleChange: (value: string) => void;
     error: string;
-}> = ({ value, placeHolder, type, handleChange, error }) => {
+    accept?: string;
+}> = ({ value, placeHolder, type, handleChange, error, accept }) => {
+    const onChange = async (e: any) => {
+        if (type === 'file') {
+            const base64File = await getBase64(e.target.files[0]);
+            handleChange(base64File);
+            return;
+        }
+
+        handleChange(e.target.value);
+    };
     return (
         <>
             <input
                 className={cs(error && 'input__error', 'auth__input')}
-                value={value}
+                value={type === 'file' ? undefined : value}
                 placeholder={placeHolder}
                 type={type}
-                onChange={(e: any) => handleChange(e.target.value)}
+                onChange={onChange}
+                accept={accept}
             />
             {error && (
                 <span className='error__message'>Field is required!</span>
