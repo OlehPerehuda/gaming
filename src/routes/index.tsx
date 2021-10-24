@@ -10,7 +10,7 @@ const Registration = lazy(() => import('../modules/Registration'));
 const Details = lazy(() => import('../modules/Details'));
 const CreatePost = lazy(() => import('../modules/CreatePost'));
 const Admins = lazy(() => import('../modules/Admins'));
-const Users = lazy(() => import('../modules/Users'))
+const Users = lazy(() => import('../modules/Users'));
 const Edit = lazy(() => import('../modules/Edit'));
 
 export enum ERoutes {
@@ -21,8 +21,8 @@ export enum ERoutes {
     registration = '/auth/registration',
     create = '/create',
     edit = '/edit',
-    users = '/users'
-};
+    users = '/users',
+}
 
 const routeConfig = [
     { path: ERoutes.home, component: Main, exact: true },
@@ -34,24 +34,22 @@ const routeConfig = [
 ];
 
 export const Routes = () =>
-    <Switch>
-        <Route path='/auth'>
-            <AuthLayout>
-                <Switch>
-                    <Route
-                        path={ERoutes.registration}
-                        component={Registration}
-                    />
-                    <Route path={ERoutes.login} component={Login} />
-                </Switch>
-            </AuthLayout>
-        </Route>
-        <Route path='/'>
-            <Header />
-            {routeConfig.map((route, index) =>
-                <Route {...route} key={index} />
-            )}
-        </Route>
-        <Redirect to='/' />
-    </Switch>;
+  <Switch>
+      <Route path='/auth'>
+          <AuthLayout>
+              <Switch>
+                  <Route
+                      path={ERoutes.registration}
+                      component={Registration}
+                  />
+                  <Route path={ERoutes.login} component={Login} />
+              </Switch>
+          </AuthLayout>
+      </Route>
+      <Route path='/'>
+          <Header />
+          {routeConfig.map((route, index) => <Route {...route} key={index} />)}
+      </Route>
+      <Redirect to='/' />
+  </Switch>;
 

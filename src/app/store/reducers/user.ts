@@ -1,4 +1,9 @@
-import { LOGIN_USER, LOGOUT, REGISTER_USER, UPDATE_USER } from '../actions/user';
+import {
+    LOGIN_USER,
+    LOGOUT,
+    REGISTER_USER,
+    UPDATE_USER,
+} from '../actions/user';
 
 export interface IUserState {
     email: string;

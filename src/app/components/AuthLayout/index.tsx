@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import rocket from '../../static/images/auth/rocket.png';
 import logo from '../../static/images/auth/logo.png';
 import { ERoutes } from '../../../routes';
@@ -14,10 +15,18 @@ export const AuthLayout: React.FC = ({ children }) => {
                 <img src={rocket} alt='Rocket' className='auth__rocket' />
                 <div>
                     <h5 className='auth_leftbar__title'>
-                        Buy,
-                        <br /> Play,
-                        <br /> Left Review!
-                        <br />
+                        <FormattedMessage
+                            id='buy'
+                            defaultMessage='Buy,'
+                        />
+                        <br /> <FormattedMessage
+                            id='play'
+                            defaultMessage='Play,'
+                        />
+                        <br /> <FormattedMessage
+                            id='left_review'
+                            defaultMessage='Left Review!'
+                        />
                     </h5>
                 </div>
             </div>

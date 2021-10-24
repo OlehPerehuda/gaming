@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,7 +10,7 @@ import { deleteGameByID } from '../../store/actions/games';
 
 import './index.scss';
 
-export const Card: React.FC<{ card: IGame }> = ({ card }) => {
+export const Card: React.FC<{ card: IGame & {id:string}}> = ({ card }) => {
     const dispatch = useDispatch();
     const { isAdmin } = useSelector((state: RootState) => state.user);
 

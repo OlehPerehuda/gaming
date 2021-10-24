@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../static/images/nav/logo.png';
 import { Cross, DropdownNavBar } from '../../static/images/nav/svg';
@@ -37,10 +39,10 @@ export const Nav = () => {
             <Link to='/'>
                 <img className='nav__logo' src={logo} alt='logo' />
             </Link>
-            <div className="nav__wrapper">
+            <div className='nav__wrapper'>
                 <div className='nav__controls'>
                     <ul className='nav__list'>
-                        {SocialList.map((item, index) => (
+                        {SocialList.map((item, index) =>
                             <li className='nav__item' key={index}>
                                 <a href={item.path} className='nav__link'>
                                     <img
@@ -50,16 +52,15 @@ export const Nav = () => {
                                     />
                                 </a>
                             </li>
-                        ))}
+                        )}
                     </ul>
                 </div>
                 <div
-                    className={`nav__controls-mobile${
-                        dropdownMenu ? '-active' : ''
-                    }`}
+                    className={`nav__controls-mobile${dropdownMenu ? '-active' : ''
+                        }`}
                 >
                     <ul className='nav__list-mobile'>
-                        {SocialList.map((item, index) => (
+                        {SocialList.map((item, index) =>
                             <li className='nav__item' key={index}>
                                 <a href={item.path} className='nav__link'>
                                     <img
@@ -69,45 +70,75 @@ export const Nav = () => {
                                     />
                                 </a>
                             </li>
-                        ))}
+                        )}
                     </ul>
                     <a href='' className='nav__button-mobile'>
-                        Login
+                        <FormattedMessage
+                            id='login'
+                            defaultMessage='Login'
+                        />
                     </a>
                     <a href='' className='nav__button-mobile'>
-                        Register
+                        <FormattedMessage
+                            id='register'
+                            defaultMessage='Register'
+                        />
                     </a>
                 </div>
-                {!email ? (
+                {!email ?
                     <>
                         <Link to={ERoutes.login} className='nav__button'>
-                            Login
+                            <FormattedMessage
+                                id='login'
+                                defaultMessage='Login'
+                            />
                         </Link>
                         <Link to={ERoutes.registration} className='nav__button'>
-                            Register
+                            <FormattedMessage
+                                id='register'
+                                defaultMessage='Register'
+                            />
                         </Link>
                     </>
-                ) : (
-                    <div className="nav__status">
-                        <span className="nav__status__name">
+                    :
+                    <div className='nav__status'>
+                        <span className='nav__status__name'>
                             Welcome, {firstName}
                         </span>
-                        <div className="nav__status__user" onClick={() => handleControls(prev => !prev)}>
+                        <div
+                            className='nav__status__user'
+                            onClick={() => handleControls((prev) => !prev)}
+                        >
                             {userControls &&
-                                <div className="nav__status__user-controls">
-                                    <div className="nav__status__logout" onClick={handleLogout}>Logout</div>
-                                    <Link className="nav__status__logout" to={ERoutes.edit}>Edit profile</Link>
-                                    <Link className="nav__status__logout" to={ERoutes.home}>Go to home</Link>
+                                <div className='nav__status__user-controls'>
+                                    <div
+                                        className='nav__status__logout'
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </div>
+                                    <Link
+                                        className='nav__status__logout'
+                                        to={ERoutes.edit}
+                                    >
+                                        Edit profile
+                                    </Link>
+                                    <Link
+                                        className='nav__status__logout'
+                                        to={ERoutes.home}
+                                    >
+                                        Go to home
+                                    </Link>
                                 </div>
                             }
                             <img
-                                className="nav__status__user__profile"
-                                alt="profile"
+                                className='nav__status__user__profile'
+                                alt='profile'
                                 src={image}
                             />
                         </div>
                     </div>
-                )}
+                }
                 <div
                     className='nav__dropdown'
                     onClick={() => setDropdownMenu(!dropdownMenu)}
@@ -115,7 +146,7 @@ export const Nav = () => {
                     {dropdownMenu ? <Cross /> : <DropdownNavBar />}
                 </div>
                 <select
-                    className="nav__language"
+                    className='nav__language'
                     onChange={handleChangeLang}
                     value={lang}
                 >
@@ -123,6 +154,6 @@ export const Nav = () => {
                     <option value='ru'>RU</option>
                 </select>
             </div>
-        </nav >
+        </nav>
     );
 };

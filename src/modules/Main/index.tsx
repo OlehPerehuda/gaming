@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card } from '../../app/components/Card';
 import { loadGames } from '../../app/store/actions/games';
@@ -30,20 +30,19 @@ const Main = () => {
     const handleSearch = () => {
         dispatch(loadGames({ page, perPage: perPage, search, searchField }));
     };
-    console.log(gamesList);
     return (
         <section className='games'>
-            <div className="games__wrapper">
-                <div className="games__controls">
-                    <div className="games__controls__paginator">
-                        <div className="games__page">
-                            <div className="games__page__arrow">&#8249;</div>
-                            <div className="games__page__value">0</div>
-                            <div className="games__page__arrow">&#8250;</div>
+            <div className='games__wrapper'>
+                <div className='games__controls'>
+                    <div className='games__controls__paginator'>
+                        <div className='games__page'>
+                            <div className='games__page__arrow'>&#8249;</div>
+                            <div className='games__page__value'>0</div>
+                            <div className='games__page__arrow'>&#8250;</div>
                         </div>
                         <span>Elements on page: </span>
                         <select
-                            className="games__count"
+                            className='games__count'
                             value={perPage}
                             onChange={handleChangeNumber(setPerPage)}
                         >
@@ -51,9 +50,9 @@ const Main = () => {
                             <option value={3}>3</option>
                         </select>
                     </div>
-                    <div className="games__controls__search">
+                    <div className='games__controls__search'>
                         <select
-                            className="games__language"
+                            className='games__language'
                             value={searchField}
                             onChange={handleChangeString(setSearchField)}
                         >
@@ -61,20 +60,23 @@ const Main = () => {
                             <option value='description'>Description</option>
                         </select>
                         <input
-                            placeholder="Type to search"
-                            className="games__search"
-                            value={search} onChange={handleChangeString(setSearch)} />
+                            placeholder='Type to search'
+                            className='games__search'
+                            value={search}
+                            onChange={handleChangeString(setSearch)}
+                        />
                         <div
-                            className="games__confirm-search" onClick={handleSearch}
+                            className='games__confirm-search'
+                            onClick={handleSearch}
                         >
                             Search
                         </div>
                     </div>
                 </div>
                 <div className='games__cards-area'>
-                    {gamesList.map((item: IGame, index: any) => (
+                    {gamesList.map((item: IGame, index: number) =>
                         <Card key={index} card={item} />
-                    ))}
+                    )}
                 </div>
             </div>
         </section>
