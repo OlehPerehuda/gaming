@@ -18,7 +18,7 @@ import { IField } from "./interface";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<any>({
     email: {
       value: "",
       error: "",
@@ -65,7 +65,7 @@ const Login: React.FC = () => {
         handleSumbit={handleSumbit}
         isValidForm={!!form.email.value && !!form.password.value}
       >
-        {list.map((authValue: IField, index: number) => {
+        {list.map((authValue, index: number) => {
           return (
             <UserAuthValue
               {...authValue}
