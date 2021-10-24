@@ -1,12 +1,18 @@
-import { LOGIN_USER, REGISTER_USER } from "../actions/user";
+import { LOGIN_USER, LOGOUT, REGISTER_USER } from '../actions/user';
 
 export interface IUserState {
-    email: string,
-    firstName: string,
-    lastName: string,
+    email: string;
+    firstName: string;
+    lastName: string;
 }
 
-export const userReducer = (state: IUserState, action: any) => {
+const initState = {
+    email: '',
+    firstName: '',
+    lastName: '',
+};
+
+export const userReducer = (state: IUserState = initState, action: any) => {
     switch (action.type) {
         case REGISTER_USER:
             return {
@@ -18,8 +24,10 @@ export const userReducer = (state: IUserState, action: any) => {
                 ...state,
                 ...action.payload,
             };
+        case LOGOUT:
+            return { ...initState };
         default: {
-            return {...state};
-        };
-    };
+            return { ...state };
+        }
+    }
 };

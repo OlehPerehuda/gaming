@@ -5,6 +5,12 @@ export const registrationFormConfig = [
         type: 'email',
     },
     {
+        name: 'image',
+        placeHolder: 'Select profile image',
+        type: 'file',
+        accept: 'image/png, image/jpeg',
+    },
+    {
         name: 'password',
         placeHolder: 'Enter password',
         type: 'password',

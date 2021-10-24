@@ -8,8 +8,9 @@ export class UserMainInfo {
         public lastName: string,
         public email: string,
         public password: string,
-    ) { };
-};
+        public image: string
+    ) {}
+}
 
 /** exposes User domain entity */
 export class User {
@@ -18,6 +19,6 @@ export class User {
         public id: string,
         public likes: Like,
         public comments: Comment[],
-        public favourites: IGame[],
-    ) { };
-};
+        public favourites: IGame[]
+    ) {}
+}

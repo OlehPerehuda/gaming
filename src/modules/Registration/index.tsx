@@ -29,6 +29,10 @@ const Login: React.FC = () => {
             value: '',
             error: false,
         },
+        image: {
+            value: '',
+            error: false,
+        },
     });
 
     const handleChange = (fieldName: string) => (value: string) => {
@@ -39,6 +43,7 @@ const Login: React.FC = () => {
     const handleSumbit = () => {
         dispatch(
             registerUser({
+                image: form.image.value,
                 email: form.email.value,
                 password: form.password.value,
                 firstName: form.firstName.value,
@@ -46,8 +51,6 @@ const Login: React.FC = () => {
             })
         );
     };
-
-    /** auth user values that will send to DB */
 
     return (
         <section className='registration'>
