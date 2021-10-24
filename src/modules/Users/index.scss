@@ -16,5 +16,17 @@
         border-radius: 20px;
         background-color: white;
         padding: 20px;
+        position: relative;
+
+        &__close {
+            position: absolute;
+            z-index: 2;
+            top: 5px;
+            right: 15px;
+            cursor: pointer;
+            &__icon {
+                height: 20px;
+            }
+        }
     }
 }

@@ -12,11 +12,11 @@ export class UserMainInfo {
         public email: string,
         public password: string,
         public image: string
-        ) {}
-    }
+    ) { }
+}
 
-    /** exposes User domain entity */
-    export class User {
+/** exposes User domain entity */
+export class User {
     /** class implementation */
     constructor(
         public mainInfo: UserMainInfo,
@@ -24,7 +24,7 @@ export class UserMainInfo {
         public likes: Like,
         public comments: IComment[],
         public favourites: IGame[]
-    ) {}
+    ) { }
 }
 
 /** domain user */
@@ -34,4 +34,5 @@ export interface IUser {
     email: string;
     password: string;
     image: string;
+    id: string,
 }
