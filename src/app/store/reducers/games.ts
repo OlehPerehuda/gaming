@@ -1,13 +1,17 @@
-import { LOAD_GAMES } from '../actions/games';
+import { LOAD_GAMES, LOAD_SELECTED_GAME } from '../actions/games';
 
 interface IGame {}
 
 const initState = {
     data: [],
+    selectedGame: {},
     loading: true,
 };
 
-export const gamesReducer = (state: { games: IGame[] }, action: any) => {
+export const gamesReducer = (
+    state: { games: IGame[] | IGame },
+    action: any
+) => {
     switch (action.type) {
         case LOAD_GAMES:
             return {
@@ -16,8 +20,14 @@ export const gamesReducer = (state: { games: IGame[] }, action: any) => {
                 loading: false,
             };
 
+        case LOAD_SELECTED_GAME:
+            return {
+                ...state,
+                selectedGame: action.payload,
+            };
+
         default: {
-            return { ...initState };
+            return { ...initState, ...state };
         }
     }
 };

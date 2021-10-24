@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../static/images/nav/logo.png';
 import { Cross, DropdownNavBar } from '../../static/images/nav/svg';
 import { logoutUser } from '../../store/actions/user';
+import { changeLocal } from '../../store/actions/local';
 import { ERoutes } from '../../../routes';
 import { RootState } from '../../store';
 import { SocialList } from './consts';
@@ -21,14 +22,22 @@ export const Nav = () => {
     const handleLogout = () => {
         dispatch(logoutUser());
     };
+    const { lang } = useSelector((state: RootState) => state.local);
+
+    const handleChangeLang = () => {
+        if (lang === 'en') {
+            dispatch(changeLocal('ru'));
+        } else {
+            dispatch(changeLocal('en'));
+        }
+    };
 
     return (
         <nav className='nav'>
-            <Link to="/">
+            <Link to='/'>
                 <img className='nav__logo' src={logo} alt='logo' />
             </Link>
             <div className="nav__wrapper">
-
                 <div className='nav__controls'>
                     <ul className='nav__list'>
                         {SocialList.map((item, index) => (
@@ -45,8 +54,9 @@ export const Nav = () => {
                     </ul>
                 </div>
                 <div
-                    className={`nav__controls-mobile${dropdownMenu ? '-active' : ''
-                        }`}
+                    className={`nav__controls-mobile${
+                        dropdownMenu ? '-active' : ''
+                    }`}
                 >
                     <ul className='nav__list-mobile'>
                         {SocialList.map((item, index) => (
@@ -104,9 +114,13 @@ export const Nav = () => {
                 >
                     {dropdownMenu ? <Cross /> : <DropdownNavBar />}
                 </div>
-                <select>
-                    <option value="">ENG</option>
-                    <option value="">RU</option>
+                <select
+                    className="nav__language"
+                    onChange={handleChangeLang}
+                    value={lang}
+                >
+                    <option value='en'>ENG</option>
+                    <option value='ru'>RU</option>
                 </select>
             </div>
         </nav >

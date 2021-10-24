@@ -1,8 +1,16 @@
 import { Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { IntlProvider, FormattedMessage } from 'react-intl';
 import { firebaseAuth } from './firebase';
 import { Routes } from './routes';
 import { getUserInfo } from './app/store/actions/user';
+import { RootState } from './app/store';
+import messages_ru from './lang/ru.json';
+
+const messages = {
+    ru: messages_ru,
+    en: {},
+};
 
 function App() {
     const dispatch = useDispatch();
@@ -12,10 +20,28 @@ function App() {
         });
     }, []);
 
+    const { lang } = useSelector((state: RootState) => state.local);
+
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <Routes />
-        </Suspense>
+        <IntlProvider
+            // @ts-ignore
+            messages={messages[lang]}
+            locale={lang}
+            defaultLocale='en'
+        >
+            <Suspense
+                fallback={
+                    <div>
+                        <FormattedMessage
+                            id='test'
+                            defaultMessage='Loading...'
+                        />
+                    </div>
+                }
+            >
+                <Routes />
+            </Suspense>
+        </IntlProvider>
     );
 }
 

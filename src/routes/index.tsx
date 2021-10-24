@@ -1,5 +1,5 @@
 import React, { Fragment, lazy } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { Header } from '../app/components/Header';
 import { AuthLayout } from '../app/components/AuthLayout';
 
@@ -30,7 +30,7 @@ const routeConfig = [
     { path: ERoutes.edit, component: Edit, exact: true },
 ];
 
-export const Routes = () => (
+export const Routes = () =>
     <Switch>
         <Route path='/auth'>
             <AuthLayout>
@@ -45,10 +45,10 @@ export const Routes = () => (
         </Route>
         <Route path='/'>
             <Header />
-            {routeConfig.map((route, index) => (
+            {routeConfig.map((route, index) =>
                 <Route {...route} key={index} />
-            ))}
+            )}
         </Route>
         <Redirect to='/' />
-    </Switch>
-);
+    </Switch>;
+
